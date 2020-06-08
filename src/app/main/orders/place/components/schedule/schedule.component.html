@@ -1,0 +1,23 @@
+<div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+    <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+        <div fxLayout="row" fxFlex="100" class="pb-24 font-size-20 font-weight-bold">
+            {{orderConfig.commonLb.orderDelivery}}
+        </div>
+        <div *ngIf="scheduleFormGroup.invalid">
+            <mat-error>
+                {{orderConfig.commonLb.orderDeliveryMsg}}
+            </mat-error>
+        </div>
+        <div class="pb-24" fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <form [formGroup]="scheduleFormGroup" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+                <app-schedule-calendar class="width-100" (finalEvent)="scheduleEventData($event)" [isEditMode]="isEditMode"
+                    [calendarEvent]="order.schedules"></app-schedule-calendar>
+            </form>
+        </div>
+        <div fxLayout="row" fxFlex="100">
+            <button mat-raised-button color="accent" matStepperPrevious>{{orderConfig.commonBtn.back}}</button>
+            <span fxFlex></span>
+            <button mat-raised-button color="accent" matStepperNext [disabled]="scheduleFormGroup.invalid">{{orderConfig.commonBtn.next}}</button>
+        </div>
+    </form>
+</div>

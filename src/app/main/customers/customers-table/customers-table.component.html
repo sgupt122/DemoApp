@@ -1,0 +1,67 @@
+<ngx-datatable #table class="material" [rows]="customersResponse.data" [loadingIndicator]="loadingIndicator"
+    [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [externalPaging]="true"
+    [selected]="selected" [selectionType]="'single'" [selectCheck]="singleSelectCheck" (select)='onSelect()'
+     (page)='setPage($event)' clickOutside (clickOutside)="clickOutside()">
+     <!--[offset]="this.customersResponse.meta.pagination.current_page - 1"
+         [count]="customersResponse.meta.pagination.total" [limit]="customersResponse.meta.pagination.per_page" -->
+    <ngx-datatable-column [width]="20" *ngIf="customerColumns[0].flag" name={{customerColumns[0].name}} pro="status_detail">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <mat-icon class="{{value.class}} status-icons" [ngClass]="value.class">{{value.icon}}</mat-icon>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="20"  *ngIf="customerColumns[1].flag"name={{customerColumns[1].name}} pro="id">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[2].flag"name={{customerColumns[2].name}} pro="user.id">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[3].flag"name={{customerColumns[3].name}} pro="provider.name">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[4].flag"name={{customerColumns[4].name}} pro="campaign.lead">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[5].flag"name={{customerColumns[5].name}} pro="first_name">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[6].flag"name={{customerColumns[6].name}} pro="last_name">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[7].flag"name={{customerColumns[7].name}} pro="email">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[8].flag"name={{customerColumns[8].name}} pro="phone">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[9].flag"name={{customerColumns[9].name}} pro="address">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span class="adress-text">{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[10].flag"name={{customerColumns[10].name}} pro="city">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span class="adress-text">{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column  *ngIf="customerColumns[11].flag"name={{customerColumns[11].name}} pro="postal_code">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

@@ -1,0 +1,20 @@
+<mat-toolbar>
+    <p *ngIf="isShow && impersonateToken" class='fs-14'>{{impersonateMsg}}</p>
+    <a mat-button class='show-hide-btn' (click)="onShowHideBtn()" *ngIf="impersonateToken">{{showHideText}}</a>
+    <a mat-button matTooltip="Exit from impersonation" (click)="exitImpersonateAgent()" *ngIf="impersonateToken">
+        <mat-icon class="exit-btn">
+            clear
+        </mat-icon>
+    </a>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="space-between center" fxFlex>
+        <div mat-button class="pink" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="start center">
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxHide fxShow.gt-xs>
+            <a mat-button routerLink="/legal/privacy-policy">{{footerConfigTxt.privacyPolicy}}</a>
+            <span>&bull;</span>
+            <a mat-button routerLink="/legal/terms-and-conditions">{{footerConfigTxt.TC}}</a>
+            <span>&bull;</span>
+            <a mat-button routerLink="">{{footerConfigTxt.charcoal}} &copy;</a>
+        </div>
+    </div>
+</mat-toolbar>

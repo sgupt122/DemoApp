@@ -1,0 +1,24 @@
+<div class="navbar-top" style="background-color: #58595b; color: #FFFFFF;">
+<!--     [ngClass]="fuseConfig.layout.navbar.secondaryBackground">-->
+    <div class="logo">
+<!--        <img alt="Logo" class="logo-icon" src="assets/images/logos/fuse.svg">-->
+        <img alt="Logo" class="logo-icon" src="assets/images/logos/charcoal_horiz_line.png" style="width: 100px;">
+    </div>
+    <div class="buttons">
+        <button mat-icon-button class="toggle-sidebar-folded"
+                (click)="toggleSidebarFolded()" fxHide.lt-lg>
+            <mat-icon class="secondary-text">menu</mat-icon>
+        </button>
+        <button mat-icon-button class="toggle-sidebar-opened"
+                (click)="toggleSidebarOpened()" fxHide.gt-md>
+            <mat-icon class="secondary-text">arrow_back</mat-icon>
+        </button>
+    </div>
+</div>
+<div class="navbar-scroll-container" style="background-color: #58595b; color: #FFFFFF;"
+     fusePerfectScrollbar [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
+    <!--     [ngClass]="fuseConfig.layout.navbar.primaryBackground"-->
+    <div class="navbar-content">
+        <fuse-navigation class="material2" layout="vertical"></fuse-navigation>
+    </div>
+</div>

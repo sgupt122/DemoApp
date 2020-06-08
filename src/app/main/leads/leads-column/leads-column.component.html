@@ -1,0 +1,41 @@
+<ng-container>
+  <div fxFlex="100" class="list-data">
+    <div class="popup">
+      <div class="detail">
+        <div class="block">
+          <strong class="mat-headline">Header Column Name Change</strong>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="row">
+        <p>
+          <mat-form-field class="mr-16" appearance="outline" fxFlex="100">
+            <mat-label>Select Column</mat-label>
+            <mat-select #selectColumn name="column" required>
+              <mat-option value="">Select Column</mat-option>
+              <mat-option *ngFor="let name of leadsHeaderColumns" value="{{name.name}}">
+                {{name.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="mr-16" appearance="outline" fxFlex="100">
+            <mat-label>
+              Change Column Name
+            </mat-label>
+            <input matInput #updatedColumnName>
+          </mat-form-field>
+        </p>
+        <mat-divider class="mar-15"> </mat-divider>
+      </div>
+      <mat-dialog-actions class="flex-end">
+        <button mat-raised-button mat-dialog-close color="accent" mat-button
+          color="accent">{{leadCreditText.commonBtn.cancel}}</button>
+        <button mat-raised-button [disabled]="!selectColumn.selected || !updatedColumnName.value" color="accent"
+          mat-button color="accent"
+          (click)="changeColumnName(selectColumn.selected.value,updatedColumnName.value)">{{leadCreditText.commonBtn.submit}}</button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+
+</ng-container>

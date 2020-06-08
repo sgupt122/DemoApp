@@ -1,0 +1,27 @@
+<div class="p-12" fxLayout="column" fxFlex fusePerfectScrollbar>
+    <form name="form" #transactionsFilterForm="ngForm" (ngSubmit)="filter(transactionsFilterForm)" fxLayout="column"
+        fxLayoutAlign="start" fxFlex="1 0 auto">
+        <div fxLayout="row" fxFlex="100">
+            <button type="button" color="accent" (click)="resetForm(transactionsFilterForm)" mat-stroked-button fxFlex="50">
+                <mat-icon>cached</mat-icon>
+                {{transactionConfig.commonBtn.reset}}
+            </button>
+            <button class="ml-8" type="submit" fxFlex="50" mat-flat-button color="accent">
+                <mat-icon>search</mat-icon>
+                {{transactionConfig.commonBtn.submit}}
+            </button>
+        </div>
+        <mat-form-field appearance="outline" fxFlex="100" class="fullwidth pt-24">
+            <mat-label>{{transactionConfig.transaction.agentId}}</mat-label>
+            <input matInput type='number' [(ngModel)]="filters.userID" pattern="^\d+$" name="userID" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" class="fullwidth">
+            <mat-label>{{transactionConfig.transaction.amount}}</mat-label>
+            <input matInput type='number' [(ngModel)]="filters.amount" name="amount" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" class="fullwidth">
+            <mat-label>{{transactionConfig.transaction.balance}}</mat-label>
+            <input matInput type='number' [(ngModel)]="filters.balance" name="balance" />
+        </mat-form-field>
+    </form>
+</div>

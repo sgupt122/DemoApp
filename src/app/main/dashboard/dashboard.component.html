@@ -1,0 +1,239 @@
+<div id="dashboard-analytics" class="page-layout blank" *ngIf="widgets">
+    <div class="main-widget">
+    </div>
+    <div class="content">
+        <div class="left mr-lg-32">
+            <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+
+                <!-- Widget 1 -->
+                <fuse-widget class="widget ng-trigger ng-trigger-animate" fxflex="100" fxflex.gt-md="25"
+                    fxflex.gt-xs="50" fxlayout="column"
+                    style="flex-direction: column; box-sizing: border-box; display: flex; flex: 1 1 25%; max-width: 25%;">
+                    <div class="fuse-widget-front ng-tns-c74-274">
+                        <div class="pl-16 pr-8 py-16 h-52" fxlayout="row" fxlayoutalign="space-between center"
+                            style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center space-between; align-items: left;">
+                            <div class="h3 secondary-text">Daily</div>
+                            <button class="fuse-widget-flip-button mat-icon-button" aria-label="more"
+                                fusewidgettoggle="" mat-icon-button="">
+                                <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </button>
+                        </div>
+                        <div class="pt-8 pl-16 pr-16 pb-32" fxlayout="column" fxlayoutalign="center left"
+                            style="flex-direction: column; box-sizing: border-box; display: flex; place-content: center; align-items: left;">
+                            <div class="red-fg-color font-size-52 line-height-72"> 300 </div>
+                        </div>
+                        <div class="p-16 border-top" fxlayout="row" fxlayoutalign="start center"
+                            style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                            <span class="h4 secondary-text text-truncate"> Yesterday:</span>
+                            <span class="h4 ml-8">268</span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 ng-tns-c74-274">
+                        <button class="fuse-widget-flip-button mat-icon-button" aria-label="Flip widget"
+                            fusewidgettoggle="" mat-icon-button="">
+                            <span class="mat-button-wrapper">
+                                <mat-icon class="s-16 mat-icon ng-tns-c74-274 material-icons mat-icon-no-color"
+                                    role="img" aria-hidden="true">close</mat-icon>
+                            </span>
+                            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+                            <div class="mat-button-focus-overlay"></div>
+                        </button>
+                        <div class="ng-tns-c74-274"> You can show some detailed information about this widget in here.
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / Widget 1 -->
+
+                <!-- Widget 2 -->
+                <fuse-widget class="widget ng-trigger ng-trigger-animate" fxflex="100" fxflex.gt-md="25"
+                             fxflex.gt-xs="50" fxlayout="column"
+                             style="flex-direction: column; box-sizing: border-box; display: flex; flex: 1 1 25%; max-width: 25%;">
+                    <div class="fuse-widget-front ng-tns-c74-274">
+                        <div class="pl-16 pr-8 py-16 h-52" fxlayout="row" fxlayoutalign="space-between center"
+                             style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center space-between; align-items: center;">
+                            <div class="h3 secondary-text">Weekly</div>
+                            <button class="fuse-widget-flip-button mat-icon-button" aria-label="more"
+                                    fusewidgettoggle="" mat-icon-button="">
+                                <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </button>
+                        </div>
+                        <div class="pt-8 pl-16 pr-16 pb-32" fxlayout="column" fxlayoutalign="center center"
+                             style="flex-direction: column; box-sizing: border-box; display: flex; place-content: center; align-items: left;">
+                            <div class="red-fg-color font-size-52 line-height-72"> 18,587 </div>
+
+                        </div>
+                        <div class="p-16 border-top" fxlayout="row" fxlayoutalign="start center"
+                             style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                            <span class="h4 secondary-text text-truncate"> Last Month: </span>
+                            <span class="h4 ml-8">17,462</span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 ng-tns-c74-274">
+                        <button class="fuse-widget-flip-button mat-icon-button" aria-label="Flip widget"
+                                fusewidgettoggle="" mat-icon-button="">
+                            <span class="mat-button-wrapper">
+                                <mat-icon class="s-16 mat-icon ng-tns-c74-274 material-icons mat-icon-no-color"
+                                          role="img" aria-hidden="true">close</mat-icon>
+                            </span>
+                            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+                            <div class="mat-button-focus-overlay"></div>
+                        </button>
+                        <div class="ng-tns-c74-274"> You can show some detailed information about this widget in here.
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / Widget 2 -->
+
+                <!-- Widget 3 -->
+                <fuse-widget class="widget ng-trigger ng-trigger-animate" fxflex="100" fxflex.gt-md="25"
+                    fxflex.gt-xs="50" fxlayout="column"
+                    style="flex-direction: column; box-sizing: border-box; display: flex; flex: 1 1 25%; max-width: 25%;">
+                    <div class="fuse-widget-front ng-tns-c74-274">
+                        <div class="pl-16 pr-8 py-16 h-52" fxlayout="row" fxlayoutalign="space-between center"
+                            style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center space-between; align-items: center;">
+                            <div class="h3 secondary-text">Current Month</div>
+                            <button class="fuse-widget-flip-button mat-icon-button" aria-label="more"
+                                fusewidgettoggle="" mat-icon-button="">
+                                <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </button>
+                        </div>
+                        <div class="pt-8 left pl-16 pr-16 pb-32" fxlayout="column" fxlayoutalign="center center"
+                            style="flex-direction: column; box-sizing: border-box; display: flex; place-content: center; align-items: left;">
+                            <div class="red-fg-color font-size-52 line-height-72"> 420 </div>
+
+                        </div>
+                        <div class="p-16 border-top" fxlayout="row" fxlayoutalign="start center"
+                            style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                            <span class="h4 secondary-text text-truncate"> Last Month :</span>
+                            <span class="h4 ml-8">395</span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 ng-tns-c74-274">
+                        <button class="fuse-widget-flip-button mat-icon-button" aria-label="Flip widget"
+                            fusewidgettoggle="" mat-icon-button="">
+                            <span class="mat-button-wrapper">
+                                <mat-icon class="s-16 mat-icon ng-tns-c74-274 material-icons mat-icon-no-color"
+                                    role="img" aria-hidden="true">close</mat-icon>
+                            </span>
+                            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+                            <div class="mat-button-focus-overlay"></div>
+                        </button>
+                        <div class="ng-tns-c74-274"> You can show some detailed information about this widget in here.
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / Widget 3 -->
+
+                <!-- Widget 4 -->
+                <fuse-widget class="widget ng-trigger ng-trigger-animate" fxflex="100" fxflex.gt-md="25"
+                    fxflex.gt-xs="50" fxlayout="column"
+                    style="flex-direction: column; box-sizing: border-box; display: flex; flex: 1 1 25%; max-width: 25%;">
+                    <div class="fuse-widget-front ng-tns-c74-274">
+                        <div class="pl-16 pr-8 py-16 h-52" fxlayout="row" fxlayoutalign="space-between center"
+                            style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center space-between; align-items: center;">
+                            <div class="h3 secondary-text">Previous Month</div>
+                            <button class="fuse-widget-flip-button mat-icon-button" aria-label="more"
+                                fusewidgettoggle="" mat-icon-button="">
+                                <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </button>
+                        </div>
+                        <div class="pt-8 pl-16 pr-16 pb-32" fxlayout="column" fxlayoutalign="center center"
+                            style="flex-direction: column; box-sizing: border-box; display: flex; place-content: center; align-items: left;">
+                            <div class="red-fg-color font-size-52 line-height-72"> 11,405 </div>
+
+                        </div>
+                        <div class="p-16 border-top" fxlayout="row" fxlayoutalign="start center"
+                            style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                            <span class="h4 secondary-text text-truncate"> Last Month: </span>
+                            <span class="h4 ml-8">10,521</span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 ng-tns-c74-274">
+                        <button class="fuse-widget-flip-button mat-icon-button" aria-label="Flip widget"
+                            fusewidgettoggle="" mat-icon-button="">
+                            <span class="mat-button-wrapper">
+                                <mat-icon class="s-16 mat-icon ng-tns-c74-274 material-icons mat-icon-no-color"
+                                    role="img" aria-hidden="true">close</mat-icon>
+                            </span>
+                            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+                            <div class="mat-button-focus-overlay"></div>
+                        </button>
+                        <div class="ng-tns-c74-274"> You can show some detailed information about this widget in here.
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / Widget 4 -->
+
+            </div>
+
+            <!-- Widget 6 -->
+
+            <fuse-widget class="widget ng-trigger ng-trigger-animate" fxflex="100" fxflex.gt-md="25" fxflex.gt-xs="50"
+                fxlayout="column"
+                style="flex-direction: column; box-sizing: border-box; display: flex; flex: 1 1 100%; max-width: 100%;">
+                <div class="fuse-card auto-width">
+
+                    <div class="position-relative p-24" fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" fxLayoutAlign="start start">
+                            <span class="h2">Leads Hourly</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+                                (click)="widget5SelectedDay = 'yesterday'"
+                                [ngClass]="{'accent': widget5SelectedDay === 'yesterday'}">
+                                Yesterday
+                            </div>
+                            <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+                                (click)="widget5SelectedDay = 'today'"
+                                [ngClass]="{'accent': widget5SelectedDay === 'today'}">
+                                Today
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="position-relative h-368 pb-16">
+                        <canvas baseChart [datasets]="widgets.widget5.datasets[widget5SelectedDay]"
+                            [labels]="widgets.widget5.labels" [colors]="widgets.widget5.colors"
+                            [options]="widgets.widget5.options" [chartType]="widgets.widget5.chartType">
+                        </canvas>
+                    </div>
+
+                </div>
+            </fuse-widget>
+
+            <!-- / Widget 6 -->
+
+            <!-- Widget 4 -->
+
+            <fuse-widget class="widget ng-trigger ng-trigger-animate" fxflex="100" fxflex.gt-md="25" fxflex.gt-xs="50"
+                fxlayout="column"
+                style="flex-direction: column; box-sizing: border-box; display: flex; flex: 1 1 100%; max-width: 100%;">
+                <div class="fuse-card auto-width">
+
+                    <div class="position-relative p-24" fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" fxLayoutAlign="start start">
+                            <span class="h2">Leads by Vendor</span>
+                        </div>
+                    </div>
+
+                    <div class="position-relative h-368 pb-16">
+                        <canvas baseChart [datasets]="widgets.widget4.datasets" [labels]="widgets.widget4.labels"
+                            [colors]="widgets.widget4.colors" [options]="widgets.widget4.options"
+                            [chartType]="widgets.widget4.chartType">
+                        </canvas>
+                    </div>
+
+                </div>
+            </fuse-widget>
+
+            <!-- / Widget 4 -->
+
+        </div>
+
+    </div>
+
+</div>

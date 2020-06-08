@@ -1,0 +1,22 @@
+<span>
+    <button mat-button *ngIf="isAction.email" [disabled]="!selectedLead || selectedLead?.id !== lead.id" (click)="email()" matTooltip="Email">
+        <div class="action-bg">
+            <mat-icon aria-hidden="true">email</mat-icon>
+        </div>
+    </button>
+    <button mat-button *ngIf="isAction.text" [disabled]="!selectedLead || selectedLead?.id !== lead.id" (click)="text()" matTooltip="Text">
+        <div class="action-bg">
+            <mat-icon aria-hidden="true">chat_bubble_outline</mat-icon>
+        </div>
+    </button>
+    <button mat-button *ngIf="isAction.call" [disabled]="!selectedLead || selectedLead?.id !== lead.id" (click)="call()" matTooltip="Call">
+        <div class="action-bg">
+            <mat-icon aria-hidden="true">phone</mat-icon>
+        </div>
+    </button>
+    <button mat-button *ngIf="isAction.quote" [disabled]="!selectedLead || selectedLead?.id !== lead.id" (click)="disposition()" matTooltip="Disposition">
+        <div class="action-bg">
+            <mat-icon role="img" aria-hidden="true">notes</mat-icon>
+        </div>
+    </button>
+</span>

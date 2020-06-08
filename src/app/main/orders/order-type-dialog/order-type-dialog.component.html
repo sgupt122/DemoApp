@@ -1,0 +1,18 @@
+<div fxLayout="column" *ngIf="isOrderTypeShow">
+    <div class="h5 pb-24" fxLayout="row" fxLayoutAlign="start start">{{orderTypeText.commonLb.selectLT}}</div>
+    <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)" fxLayout="row wrap" fxLayoutAlign="space-around center" *ngIf="data.length>0">
+            <ng-container *ngFor="let type of data">
+                <div cdkDrag *ngIf="isOrderTypeShow[type.name]">    
+                    <div class="pb-24 cursor-pointer" fxLayout="column" fxLayoutAlign="center center" (click)="onOrderTypeClick(type.id)">
+                        <mat-icon>{{ type.icon }}</mat-icon>
+                        <h4>{{ type.name }}</h4>
+                    </div>
+                </div>
+            </ng-container>
+    </div>
+    <div>
+        <span fxFlex></span>
+        <button mat-flat-button class="mr-4" color="accent" (click)="setDefaultType()">Cancle</button>      
+        <button mat-flat-button class="mr-4" color="accent" (click)="saveNewType()">Save</button>      
+    </div>
+</div>

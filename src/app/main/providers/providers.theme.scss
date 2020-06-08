@@ -1,0 +1,48 @@
+@mixin providers-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    .ngx-datatable.material.single-selection .datatable-body-row.active,
+    .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group,
+    .ngx-datatable.material.multi-selection .datatable-body-row.active,
+    .ngx-datatable.material.multi-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.material.multi-click-selection .datatable-body-row.active,
+    .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group {
+        background-color: mat-color($accent) !important;
+        color: #FFFFFF !important;
+    }
+    .ngx-datatable.material.single-selection .datatable-body-row.active:hover,
+    .ngx-datatable.material.single-selection .datatable-body-row.active:hover .datatable-row-group, .ngx-datatable.material.multi-selection .datatable-body-row.active:hover,
+    .ngx-datatable.material.multi-selection .datatable-body-row.active:hover .datatable-row-group, .ngx-datatable.material.multi-click-selection .datatable-body-row.active:hover,
+    .ngx-datatable.material.multi-click-selection .datatable-body-row.active:hover .datatable-row-group {
+        background-color: mat-color($accent) !important;
+        color: #FFFFFF !important;
+    }
+    .ngx-datatable.material {
+        .datatable-header {
+            .datatable-header-cell {
+                background-color: #BBBDBF !important;
+                color: #FFFFFF !important;
+            }
+        }
+    }
+    .ngx-datatable.material.single-selection .datatable-body-row.active,
+    .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group .datatable-body-cell,
+    .ngx-datatable.material.multi-selection .datatable-body-row.active,
+    .ngx-datatable.material.multi-selection .datatable-body-row.active .datatable-row-group .datatable-body-cell, .ngx-datatable.material.multi-click-selection .datatable-body-row.active,
+    .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group .datatable-body-cell {
+        color: #FFFFFF !important;
+    }
+    .sending-overlay {
+        background-color: mat-color($accent);
+    }
+    .success-bar {
+        background: map-get($background, card);
+        border-left: 1px solid mat-color($accent);
+        border-top: 1px solid mat-color($accent);
+        border-right: 1px solid mat-color($accent);
+    }
+    .request-errors {
+        color: mat-color($warn) !important;
+    }
+}

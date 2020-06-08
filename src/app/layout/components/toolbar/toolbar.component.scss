@@ -1,0 +1,58 @@
+@import "src/@fuse/scss/fuse";
+
+toolbar {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    z-index: 4;
+
+    .avatar-initial {
+        box-shadow: none !important;
+        width: 50px !important;
+        height: 50px !important;
+        span {
+            padding: 14px 0 !important;
+        }
+    }
+
+    &.below {
+        z-index: 2;
+    }
+
+    .mat-toolbar {
+        position: relative;
+        background: inherit !important;
+        color: inherit !important;
+    }
+    .mat-toolbar-row, .mat-toolbar-single-row {
+        height: 80px !important;
+    }
+        
+
+    .user-button,
+    fuse-search-bar,
+    .language-button,
+    .chat-panel-toggle-button,
+    .quick-panel-toggle-button {
+        min-width: 64px;
+        height: 80px;
+
+        @include media-breakpoint('xs') {
+            height: 56px;
+        }
+    }
+
+    .navbar-toggle-button {
+        min-width: 56px;
+        height: 56px;
+    }
+
+    .toolbar-separator {
+        height: 64px;
+        width: 1px;
+
+        @include media-breakpoint('xs') {
+            height: 56px;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.geo-spacing{    margin-right: 45px; border-bottom: solid 1px;}
+.headingmargin { background:rgb(243, 243, 243);  padding: 0px 16px 5px !important; margin:0px 0px 10px 0px; font-size: 18px; font-weight: 600;}
+.h3headingmargin { margin: 0px 16px 5px !important; font-size: 16px; font-weight: 600;}
+:host /deep/.mat-list-base .mat-list-item { font-size: 14px; height: inherit; margin-bottom: 5px; }
+.col-3 { width:33%; float:left; overflow: hidden; padding: 0px 0px 10px; border:rgba(0, 0, 0, 0.12) solid 1px;}
+.block-box:last-child {border-left: 0px; border-radius: 0px 5px 5px 0px;}
+.block-box:first-child{border-radius: 5px 0px 0px 5px; border-right:0px;}
+.flexbox { display: flex;}
+.lead-name { display: inline-block; font-weight: normal;}
+.inlineflex { width: 100%; display: inline-flex;}
+.blockdiv { padding-right:30px; box-sizing: border-box;}
+.blockdiv:last-child{padding-right:0px; }
+.blockdiv h2{ margin-top: 0px; margin-bottom: 0px; font-size: 16px; }
+.blockdiv p { padding: 0px; margin: 3px 0px}
+.geozipcode { display: inline-block; margin-right: 40px;}

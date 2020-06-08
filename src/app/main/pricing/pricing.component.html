@@ -1,0 +1,41 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth">
+  <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 filter-button"
+    [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+      <div class="h2 mt-16"><strong>Pricing</strong></div>
+    </div>
+    <span fxFlex></span>
+    <button mat-flat-button class="mr-4" color="accent" (click)="changeColumnName()">Change column</button>
+    <button mat-flat-button class="mr-4" color="accent" (click)="toggleSidebarOpen('pricingColumn')">
+      Hide/Show column
+    </button>
+  </div>
+  <div class="content p-24" fxFlex="90px" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+    <app-pricing-filter [rows]="rows$ | async" (tableOffsetReset)="updateTableOffset($event)"
+      (tableRowsUpdated)="updateTableRows($event)"></app-pricing-filter>
+  </div>
+  <div class="content p-24 mb-60" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+    <app-pricing-table [errorMessage]="errorMessage$ | async" [selectedPrice]="selectedPrice$ | async"
+      [filteredRows]="filteredRows" [pricingColumns]="pricingColumns$ | async"
+      (selectedUpdated)="updateSelectedPrice($event)"></app-pricing-table>
+  </div>
+  <fuse-sidebar name="pricingColumn" position="right" class="providers-filter">
+    <h1 class="ml-4">Hide/Show column</h1>
+    <div class="p-12">
+        <ng-container *ngFor="let column of (pricingColumns$ | async); let i = index">
+            <div>
+                <mat-checkbox [checked]="column.flag" (change)="changeColumnFlag($event.checked,i)">
+                    {{ column.name }}
+                </mat-checkbox>
+            </div>
+        </ng-container>
+    </div>
+    <button class="ml-8 mr-8 save-button" type="button" mat-flat-button [disabled]="isSaveBtnDisabled" color="accent"
+        (click)="saveColumnHideShow()">
+        save
+    </button>
+</fuse-sidebar>
+</div>
+
+<app-pricing-add-edit *ngIf="isAdmin" [selectedPrice]="selectedPrice$ | async" (newPriceClicked)="newPrice()">
+</app-pricing-add-edit>

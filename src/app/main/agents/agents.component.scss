@@ -1,0 +1,23 @@
+@import "src/@fuse/scss/fuse";
+
+.filter-button {
+    max-height: 84px;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.add-agent-button {
+    position: fixed;
+    bottom: 75px;
+    right: 24px;
+    padding: 0;
+    z-index: 99;
+
+    @include media-breakpoint('xs') {
+        position: sticky;
+        top: calc(100vh - 120px);
+        bottom: auto;
+    }
+}

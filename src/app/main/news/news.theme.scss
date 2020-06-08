@@ -1,0 +1,13 @@
+@mixin news-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    app-news {
+        #news {
+            #newsItem {
+                .selected-background {
+                    background-color: mat-color($accent) !important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<ngx-datatable
+    #table
+    class="material"
+    [rows]="filteredRows"
+    [columnMode]="'force'"
+    [headerHeight]="48"
+    [footerHeight]="56"
+    [rowHeight]="'auto'"
+    [selected]="selected"
+    [selectionType]="'single'"
+    [selectCheck]="singleSelectCheck"
+    [limit]="10"
+    (select)='onSelect()'
+    clickOutside
+    (clickOutside) = "clickOutside()">
+    <ng-container  *ngFor="let column of pricingColumns">
+        <ngx-datatable-column *ngIf="column.flag" [name]=column.name [prop]=column.prop></ngx-datatable-column>
+    </ng-container>
+</ngx-datatable>
+<div *ngIf="errorMessage" class="alert alert-danger">
+    Error: {{ errorMessage }}
+</div>

@@ -1,0 +1,12 @@
+<button *ngIf="!selected; else elseBlock" mat-fab color="accent" class="add-news-button" [routerLink]="['add']"
+        aria-label="add news item"
+        [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}" (click)="newNewsItem()">
+    <mat-icon>add</mat-icon>
+</button>
+<ng-template #elseBlock>
+    <button mat-fab color="accent" class="add-news-button" [routerLink]="['edit']"
+            aria-label="edit news item"
+            [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+        <mat-icon>edit</mat-icon>
+    </button>
+</ng-template>

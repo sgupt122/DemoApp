@@ -1,0 +1,12 @@
+<ngx-datatable #table class="material" [rows]="agentsResponse.data" [loadingIndicator]="loadingIndicator"
+    [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [externalPaging]="true"
+    [selected]="selected" [selectionType]="'single'" [selectCheck]="singleSelectCheck" (select)='onSelect()' (page)='setPage($event)' clickOutside
+    (clickOutside)="clickOutside()">
+    <!-- 
+    [count]="agentsResponse.meta.pagination?.total" [offset]="this.agentsResponse.meta.pagination?.current_page - 1"
+    [limit]="agentsResponse.meta.pagination?.per_page" -->
+    <ng-container *ngFor="let column of agentsColumns">
+        <ngx-datatable-column *ngIf=column.flag [name]=column.name [prop]=column.prop>
+        </ngx-datatable-column>
+    </ng-container>
+</ngx-datatable>

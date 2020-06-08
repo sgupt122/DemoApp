@@ -1,0 +1,3 @@
+<app-pricing-form [action]="action" [price]="price$ | async" [leadTypes]="leadTypes$ | async"
+                    [providers]="providers$ | async" (update)="update($event)"
+                    (create)="create($event)"></app-pricing-form>

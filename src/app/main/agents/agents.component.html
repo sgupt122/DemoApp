@@ -1,0 +1,51 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth">
+    <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 filter-button"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <div class="h2 mt-16"><strong>{{agentConfigTxt.agents.agent}}</strong></div>
+        </div>
+        <span fxFlex></span>
+        <button mat-flat-button class="mr-4" color="accent" (click)="changeColumnName()">Change Column</button>
+        <button mat-flat-button class="mr-4" color="accent" (click)="toggleSidebarOpen('agentColumns')">
+            Hide/Show column
+        </button>
+        <button mat-flat-button color="accent" (click)="addImpersonateAgent()" [disabled]='isAgentSelected'
+            class="mr-4">
+            <mat-icon>visibility</mat-icon>
+            {{agentConfigTxt.agents.impersonate}}
+        </button>
+        <button mat-flat-button color="accent" (click)="toggleSidebarOpen('agentsFilter')">
+            <mat-icon>search</mat-icon>
+            {{agentConfigTxt.commonbtn.filter}}
+        </button>
+        <fuse-sidebar name="agentsFilter" position="right" class="agents-filter">
+            <app-agents-filter [filters]="filters$ | async" (formResetClicked)="formReset()"
+                (filterButtonClicked)="setFilters($event)"></app-agents-filter>
+        </fuse-sidebar>
+        <fuse-sidebar name="agentColumns" position="right" class="agents-filter">
+            <h1 class="ml-4">Hide/Show column</h1>
+            <div class="p-12">
+                <ng-container *ngFor="let column of (agentsColumns$ | async); let i = index">
+                    <div>
+                        <mat-checkbox [checked]="column.flag" (change)="changeColumnFlag($event.checked,i)">
+                            {{ column.name }}
+                        </mat-checkbox>
+                    </div>
+                </ng-container>
+            </div>
+            <button mat-button class="ml-8 mr-4" type="button" mat-flat-button [disabled]="isSaveBtnDisabled" color="accent"
+                (click)="saveColumnHideShow()">
+                save
+            </button>
+        </fuse-sidebar>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 pt-0"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <app-agents-table class="width-100 pb-52" [error]="error$ | async" [selectedAgent]="selectedAgent$ | async"
+            [agentsResponse]="agentsResponse$ | async" [filters]="filters$ | async" [agentsColumns]="agentsColumns$ | async" (pageSet)="setPage($event)"
+            (selectedUpdated)="updateSelectedAgent($event)"></app-agents-table>
+    </div>
+</div>
+
+<app-agents-add-edit *ngIf="isAdmin" [selectedAgent]="selectedAgent$ | async" (newAgentClicked)="newAgent()">
+</app-agents-add-edit>

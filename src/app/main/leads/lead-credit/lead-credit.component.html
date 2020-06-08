@@ -1,0 +1,80 @@
+<ng-container *ngIf="currentLeadData">
+    <div fxFlex="100" class="list-data">
+        <div class="popup">
+            <div class="detail">
+                <div class="block">
+                    <strong class="mat-headline">{{leadCreditText.commonLb.disputeLead}}</strong>
+                </div>
+                <div class="block mat-title">
+                    {{leadCreditText.commonLb.leadId}}: <span>{{currentLeadData.id}}</span>
+                </div>
+            </div>
+            <div class="card-header">
+                <div class="user-icon">
+                    <mat-icon class="user-icon-mat" class="{{statuses[currentLeadData.status].class}} status-icons"
+                        [ngClass]="statuses[currentLeadData.status].class">
+                        {{ statuses[currentLeadData.status].icon }}
+                    </mat-icon>
+                </div>
+                <div class="user-detail">
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example person_outline icon">person_outline
+                            </mat-icon>
+                        </span>
+                        {{currentLeadData.name}}
+                    </p>
+
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example phone icon">phone</mat-icon>
+                        </span>
+                        {{currentLeadData.phone}}
+                    </p>
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example email icon">email</mat-icon>
+                        </span>
+                        {{currentLeadData.email}}
+                    </p>
+
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <form name="disputeLeadFG" [formGroup]="disputeLeadFG">
+                    <p>
+                        <mat-form-field class="mr-16" appearance="outline" fxFlex="100">
+                            <mat-label>{{leadCreditText.commonLb.sDReason}}</mat-label>
+                            <mat-select formControlName="reasonId" name="reasonId" required>
+                                <mat-option value="">{{leadCreditText.commonLb.sDReason}}</mat-option>
+                                <mat-option *ngFor="let reason of disputeReasons$ | async" value="{{reason.id}}">
+                                    {{reason.reason}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p>
+                    <label class="labelblock">{{leadCreditText.commonLb.issueMsg}}: </label>
+                    <p>
+                        <mat-form-field class="mr-16" appearance="outline" fxFlex="100">
+                            <mat-label>
+                                {{leadCreditText.commonLb.dIssue}}
+                            </mat-label>
+                            <input matInput formControlName="leadIssue">
+                        </mat-form-field>
+                    </p>
+                    <mat-divider class="mar-15"> </mat-divider>
+                    <p class="mt-5">
+                        <strong class="mt-5 block">{{leadCreditText.commonLb.receivedDate}}:</strong>
+                        {{currentLeadData.received_date}}
+                    </p>
+                </form>
+            </div>
+            <mat-dialog-actions class="flex-end">
+                <button mat-raised-button mat-dialog-close color="accent" mat-button color="accent">{{leadCreditText.commonBtn.cancel}}</button>
+                <button mat-raised-button [disabled]="disputeLeadFG.invalid" color="accent" mat-button color="accent"
+                    (click)="saveDisputeLead()">{{leadCreditText.commonBtn.submit}}</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+
+</ng-container>

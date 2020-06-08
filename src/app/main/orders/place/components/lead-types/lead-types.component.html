@@ -1,0 +1,54 @@
+<div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+    <form [formGroup]="leadTypesFormGroup" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+        <div fxLayout="row" fxFlex="100" class="pb-24 font-size-20 font-weight-bold">
+            {{orderAddInfo.commonLb.title}}
+        </div>
+        <div fxLayout="row" fxFlex="100" class="pb-24 font-size-18 font-weight-bold">
+            {{orderAddInfo.commonLb.selectLead}}:
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngIf="leadTypes">
+            <mat-form-field appearance="outline" fxFlex="100" style="width: 100%">
+                <mat-label>{{orderAddInfo.commonInfo.leadTypes}}</mat-label>
+                <mat-select [formControl]="types" multiple required (ngModelChange)="addLeadTypes($event)" *ngIf="leadTypes?.data.length>0">
+                    <mat-option *ngFor="let types of leadTypes?.data " [value]="types.id">{{ types.name
+                        }}</mat-option>
+                </mat-select>
+                <mat-error>{{orderAddInfo.commonLb.leadTypeMsg}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxFlex="100" class="mt-24 mb-24" *ngIf="loading">
+            <mat-progress-bar mode="query"></mat-progress-bar>
+        </div>
+        <ng-container *ngIf="campaigns">
+            <div fxLayout="row" fxFlex="100" class="pb-24 font-size-18 font-weight-bold">
+                {{orderAddInfo.commonLb.selectLeadProvider}}:
+            </div>
+            <div class="pb-24" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start start" style="width: 1000px"
+                *ngIf="objectKey(leadTypeInfo).length>0">
+                <ng-container *ngFor="let object of objectKey(leadTypeInfo)">
+                    <div class="font-size-16 pb-12 font-weight-bold" fxFlex="100">
+                        {{ object }}:
+                    </div>
+                    <div class="pb-12" fxFlex="100" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start start"
+                        *ngIf="leadTypeInfo[object].length>0">
+                        <ng-container *ngFor="let campaign of leadTypeInfo[object]">
+                            <div fxFlex="33">
+                                <mat-checkbox [checked]="campaignChecked(campaign)" (change)="leadTypeSelected($event.checked,campaign)">
+                                    {{ campaign.provider.name }} ${{ campaign.provider.description || "0.00"}}
+                                </mat-checkbox>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                <mat-error *ngIf="providerValue">{{orderAddInfo.commonLb.providerMsg}}</mat-error>
+            </div>
+
+        </ng-container>
+        <div fxLayout="row" fxFlex="100">
+            <button mat-raised-button color="accent" matStepperPrevious>{{orderAddInfo.commonBtn.back}}</button>
+            <span fxFlex></span>
+            <!-- <a mat-raised-button *ngIf="user.roles[0]==='admin'" tabindex="4" color="accent" (click)="addFakeData()">{{orderAddInfo.commonBtn.fakeData}}</a> -->
+            <button mat-raised-button color="accent" matStepperNext [disabled]="leadTypesFormGroup.invalid && providerValue">{{orderAddInfo.commonBtn.next}}</button>
+        </div>
+    </form>
+</div>

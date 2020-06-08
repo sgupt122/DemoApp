@@ -1,0 +1,174 @@
+$fuse-white: (
+        500: white,
+        contrast: (
+                500: $dark-primary-text
+        )
+);
+
+$fuse-black: (
+        500: black,
+        contrast: (
+                500: $light-primary-text,
+        )
+);
+
+$fuse-navy: (
+        50: #ECECEE,
+        100: #C5C6CB,
+        200: #9EA1A9,
+        300: #7D818C,
+        400: #5C616F,
+        500: #3C4252,
+        600: #353A48,
+        700: #2D323E,
+        800: #262933,
+        900: #1E2129,
+        A100: #C5C6CB,
+        A200: #9EA1A9,
+        A400: #5C616F,
+        A700: #2D323E,
+        toolbar: #58595B,
+        contrast: (
+                50: $dark-primary-text,
+                100: $dark-primary-text,
+                200: $dark-primary-text,
+                300: $light-primary-text,
+                400: $light-primary-text,
+                500: $light-primary-text,
+                600: $light-primary-text,
+                700: $light-primary-text,
+                800: $light-primary-text,
+                900: $light-primary-text,
+                A100: $dark-primary-text,
+                A200: $light-primary-text,
+                A400: $light-primary-text,
+                A700: $light-primary-text,
+        )
+);
+
+$nav-red: (
+        50: #f8f0dd,
+        100: #fff6e0,
+        200: #fde8b2,
+        300: #e7cf93,
+        400: #dbbf77,
+        500: #4d5a11,
+        600: #c0a45d,
+        700: #b49034,
+        800: #9b7a26,
+        900: #4d5a11,
+        A100: #eedaa7,
+        A200: #c0a255,
+        A400: #a38331,
+        A700: #977725,
+        toolbar: #4d5a11,
+        contrast: (
+                50: $dark-primary-text,
+                100: $dark-primary-text,
+                200: $dark-primary-text,
+                300: $light-primary-text,
+                400: $light-primary-text,
+                500: $light-primary-text,
+                600: $light-primary-text,
+                700: $light-primary-text,
+                800: $light-primary-text,
+                900: $light-primary-text,
+                A100: $dark-primary-text,
+                A200: $light-primary-text,
+                A400: $light-primary-text,
+                A700: $light-primary-text,
+        )
+);
+
+$custom_palettes: (
+        fuse-white: $fuse-white,
+        fuse-black: $fuse-black,
+        fuse-navy: $fuse-navy
+);
+@include fuse-color-classes($custom_palettes);
+
+// -----------------------------------------------------------------------------------------------------
+// @ Typography
+// -----------------------------------------------------------------------------------------------------
+$typography: mat-typography-config(
+        $font-family: 'Muli, Helvetica Neue, Arial, sans-serif',
+        $title: mat-typography-level(20px, 32px, 600),
+        $body-2: mat-typography-level(14px, 24px, 600),
+        $button: mat-typography-level(14px, 14px, 600),
+        $input: mat-typography-level(16px, 1.125, 400) // line-height must be unitless !!!
+);
+@include angular-material-typography($typography);
+
+// -----------------------------------------------------------------------------------------------------
+// @ Component theming
+// -----------------------------------------------------------------------------------------------------
+@import "src/app/layout/components/chat-panel/chat-panel.theme";
+@import "src/app/layout/components/toolbar/toolbar.theme";
+@import "src/app/main/auth/forgot-password/forgot-password.theme";
+@import "src/app/main/auth/lock/lock.theme";
+@import "src/app/main/auth/login/login.theme";
+@import "src/app/main/auth/register/register.theme";
+@import "src/app/main/auth/reset-password/reset-password.theme";
+@import "src/app/main/faq/faq.theme";
+@import "src/app/main/news/news.theme";
+@import "src/app/main/providers/providers.theme";
+@import "src/app/main/campaigns/campaigns.theme";
+@import "src/app/main/calendar/calendar.theme";
+
+@mixin components-theme($theme) {
+  @include chat-panel-theme($theme);
+  @include toolbar-theme($theme);
+  @include forgot-password-theme($theme);
+  @include lock-theme($theme);
+  @include login-theme($theme);
+  @include register-theme($theme);
+  @include reset-password-theme($theme);
+  @include faq-theme($theme);
+  @include news-theme($theme);
+  @include providers-theme($theme);
+  @include campaigns-theme($theme);
+  @include calendar-theme($theme);
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define a ihc group theme
+// -----------------------------------------------------------------------------------------------------
+$default-primary-palette: mat-palette($fuse-navy);
+$default-accent-palette: mat-palette($nav-red);
+$default-warn-palette: mat-palette($mat-red);
+$theme: mat-light-theme($default-primary-palette, $default-accent-palette, $default-warn-palette);
+body.theme-default {
+  @include angular-material-theme($theme);
+  @include fuse-core-theme($theme);
+  @include components-theme($theme);
+  $palettes: (
+          primary: $default-primary-palette,
+          accent: $default-accent-palette,
+          warn: $default-warn-palette
+  );
+  @include fuse-color-classes($palettes);
+}
+
+body.theme-default {
+
+  // Generate the Angular Material theme
+  @include angular-material-theme($theme);
+
+  // Apply the theme to the Fuse Core
+  @include fuse-core-theme($theme);
+
+  // Apply the theme to the user components
+  @include components-theme($theme);
+
+  // Generate Fuse color classes for primary, accent and warn colors
+  $palettes: (
+          primary: $default-primary-palette,
+          accent: $default-accent-palette,
+          warn: $default-warn-palette
+  );
+
+  @include fuse-color-classes($palettes);
+}
+.app-ngx-datatables {
+  z-index: -1;
+}

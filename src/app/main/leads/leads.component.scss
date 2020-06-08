@@ -1,0 +1,41 @@
+@import '../icon-global.scss';
+.filter-button {
+    max-height: 84px;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.status-dot {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.circle-icon {
+    background: #ffc0c0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    vertical-align: middle;
+    padding: 30px;
+}
+
+.disposition-select {
+    min-width: 180px;
+}
+.mat-datetimepicker-calendar-header{
+    color: black!important;
+ }
+
+ .display-flex-block { display: inline-flex; margin-right: 20px; align-items: center;
+.status-icons {font-size: 18px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+}

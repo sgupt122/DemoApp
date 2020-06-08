@@ -1,0 +1,107 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="mat-accent m-0">
+        <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div mat-dialog-content class="p-16 pb-0 m-0" fusePerfectScrollbar>
+        <form name="eventForm" [formGroup]="eventForm" class="event-form w-100-p" fxLayout="column" fxFlex>
+            <mat-form-field appearance="outline" class="w-100-p"
+                *ngIf="!event.leadId || eventForm.value.disposition_id ===2">
+                <mat-label>{{dispostionConfigTxt.commonLb.title}}</mat-label>
+                <input matInput name="title" formControlName="title" required>
+                <mat-error>{{dispostionConfigTxt.commonLb.titleReq}}</mat-error>
+            </mat-form-field>
+            <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+                <mat-form-field appearance="outline" class="w-100-p">
+                    <mat-label>{{dispostionConfigTxt.commonLb.selectDispotion}} </mat-label>
+                    <ng-container *ngIf="clientDispositions$ | async">
+                        <mat-select formControlName="disposition_id" name="client_disposition_id" required
+                            (selectionChange)="disabledBtn()">
+                            <mat-option *ngFor="let disposition of clientDispositions$ | async"
+                                [value]="disposition.id">
+                                {{ disposition.name }}
+                            </mat-option>
+                        </mat-select>
+                    </ng-container>
+                    <mat-error>{{dispostionConfigTxt.commonLb.dispositionReq}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="pb-32" fxFlex="1 0 auto" fxLayout="row"
+                *ngIf="!event.leadId || eventForm.value.disposition_id ===2">
+                <mat-slide-toggle name="allDay" formControlName="allDay" class="mr-24" aria-label="All day">
+                    {{dispostionConfigTxt.commonLb.allDay}}
+                </mat-slide-toggle>
+            </div>
+            <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row"
+                *ngIf="!event.leadId || eventForm.value.disposition_id ===2">
+                <mat-form-field class="w-100-p">
+                    <mat-placeholder>{{dispostionConfigTxt.commonLb.sDTime}}</mat-placeholder>
+                    <mat-datetimepicker-toggle [for]="startdatetimePicker" matSuffix></mat-datetimepicker-toggle>
+                    <mat-datetimepicker #startdatetimePicker type="datetime" openOnFocus="true" timeInterval="5">
+                    </mat-datetimepicker>
+                    <input [min]="today" matInput [matDatetimepicker]="startdatetimePicker" required
+                        autocomplete="false" name="start" formControlName="start">
+                    <mat-error>{{dispostionConfigTxt.commonLb.sDTimeReq}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row"
+                *ngIf="!event.leadId || eventForm.value.disposition_id ===2">
+                <mat-form-field class="w-100-p">
+                    <mat-placeholder>{{dispostionConfigTxt.commonLb.eDTime}}</mat-placeholder>
+                    <mat-datetimepicker-toggle [for]="enddatetimePicker" matSuffix></mat-datetimepicker-toggle>
+                    <mat-datetimepicker #enddatetimePicker type="datetime" openOnFocus="true" timeInterval="5">
+                    </mat-datetimepicker>
+                    <input [min]="eventForm.value.start" matInput [matDatetimepicker]="enddatetimePicker" required
+                        autocomplete="false" name="end" formControlName="end">
+                    <mat-error *ngIf="eventForm.value.start < eventForm.value.end">
+                        {{dispostionConfigTxt.commonLb.eDTimeReq}}
+                    </mat-error>
+                    <mat-error *ngIf="eventForm.value.start > eventForm.value.end">
+                        {{dispostionConfigTxt.commonLb.endDateValidation}} </mat-error>
+                </mat-form-field>
+            </div>
+
+
+            <mat-form-field appearance="outline" class="w-100-p"
+                *ngIf="!event.leadId || eventForm.value.disposition_id ===2">
+                <mat-label>{{dispostionConfigTxt.commonLb.location}}</mat-label>
+                <input matInput name="location" formControlName="location" required>
+                <mat-error>{{dispostionConfigTxt.commonLb.locationReq}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100-p"
+                *ngIf="!event.leadId || eventForm.value.disposition_id ===2">
+                <mat-label>{{dispostionConfigTxt.commonLb.notes}}</mat-label>
+                <textarea matInput formControlName="notes" mat-maxlength="250" max-rows="4" required>
+                    </textarea>
+                <mat-error>{{dispostionConfigTxt.commonLb.notesReq}}</mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+        <button *ngIf="action ==='edit'" mat-button color="primary" class="mr-8"
+            (click)="matDialogRef.close(['delete',eventForm])" aria-label="Delete" matTooltip="Delete"
+            (click)="deleteEvent()">
+            {{dispostionConfigTxt.commonBtn.delete}}
+        </button>
+
+        <button *ngIf="action !== 'edit'" mat-button color="primary" class="save-button"
+            (click)="matDialogRef.close(eventForm)" [disabled]="eventForm.invalid" aria-label="ADD"
+            (click)="addEvents()">
+            {{dispostionConfigTxt.commonBtn.add}}
+        </button>
+
+        <button *ngIf="action === 'edit'" mat-button color="primary" class="save-button"
+            (click)="matDialogRef.close(['save', eventForm])" [disabled]="eventForm.invalid" aria-label="SAVE"
+            (click)="updateEvents()">
+            {{dispostionConfigTxt.commonBtn.save}}
+        </button>
+
+    </div>
+</div>

@@ -1,0 +1,6 @@
+.icon { padding-top: 21px;  cursor: pointer; width: 5%; text-align: center}
+.button-block { display: block; padding-right:81px; text-align: right }
+.button-block button { margin-left: 15px;}
+@media only screen and (max-width: 1280px) {
+.button-block { padding-right: 6.5%;}
+}

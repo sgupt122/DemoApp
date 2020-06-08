@@ -1,0 +1,91 @@
+<ng-container *ngIf="currentCustomerData">
+    <div fxFlex="100" class="list-data">
+        <div class="popup">
+            <div class="detail">
+                <div class="block">
+                    {{customerConfigTxt.custId}}: <span>{{currentCustomerData.id}}</span>
+                </div>
+            </div>
+            <div class="card-header">
+                <div class="user-icon">
+                    <mat-icon class="user-icon-mat status-icons" [ngClass]="statUses[currentCustomerData.status].class">
+                        {{ statUses[currentCustomerData.status].icon }}
+                    </mat-icon>
+                </div>
+                <div class="user-detail">
+                    <h2>
+                        {{currentCustomerData.first_name}} {{currentCustomerData.last_name}}
+                    </h2>
+
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example phone icon">phone</mat-icon>
+                        </span>
+                        {{currentCustomerData.phone}}
+                    </p>
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example email icon">email</mat-icon>
+                        </span>
+                        {{currentCustomerData.email}}
+                    </p>
+
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+
+            <div class="row">
+                <div class="left-side">
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example email icon">home</mat-icon>
+                        </span>
+                        {{currentCustomerData.address}}
+                    </p>
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example place icon">place</mat-icon>
+                        </span>
+                        {{currentCustomerData.city}}, {{currentCustomerData.state}},<br>
+                        {{currentCustomerData.postal_code}}
+                    </p>
+
+                </div>
+                <div class="right-side">
+
+                    <mat-list>
+                        <ng-container *ngIf="currentCustomerData.campaign.name || currentCustomerData.campaign.code">
+                            <mat-list-item *ngIf="currentCustomerData.campaign">
+                                <h2 matLine class="font-weight-bold list-heading">
+                                    {{customerConfigTxt.campaign}} </h2>
+                                <p matLine class="pt-5" *ngIf="currentCustomerData.campaign.name">
+                                    <span class="mat-accent">{{customerConfigTxt.name}}:
+                                        {{currentCustomerData.campaign.name}} </span>
+                                </p>
+                                <p matLine class="pt-5" *ngIf="currentCustomerData.campaign.code">
+                                    <span class="mat-accent">{{customerConfigTxt.details.code}}:
+                                        {{currentCustomerData.campaign.code}} </span>
+                                </p>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </ng-container>
+
+                        <mat-list-item>
+                            <h2 matLine class="font-weight-bold list-heading"> Provider</h2>
+                            <p matLine class="pt-5">
+                                <span class="mat-accent">{{customerConfigTxt.name}}:
+                                    {{currentCustomerData.provider.name}} </span>
+                            </p>
+                            <p matLine class="pt-5" *ngIf="currentCustomerData.provider.code">
+                                <span class="mat-accent">{{customerConfigTxt.details.code}}:
+                                    {{currentCustomerData.provider.code}} </span>
+                            </p>
+                        </mat-list-item>
+                    </mat-list>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

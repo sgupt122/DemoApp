@@ -1,0 +1,17 @@
+@import '~angular-calendar/scss/angular-calendar';
+
+.disable-hover {
+    pointer-events: none;
+}
+.date-header {
+    display: flex;
+    border: 1px solid #e1e1e1;
+    padding-left: 70px;
+    .title-block {flex: 1;
+    text-align: center;
+    padding: 5px;}
+    .title-block:first-child{     border-left: 1px solid #e1e1e1;}
+    .title-block:not(:last-child) {    border-right: 1px solid #e1e1e1;}
+
+}
+

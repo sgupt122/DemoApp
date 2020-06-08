@@ -1,0 +1,41 @@
+<div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+    <form [formGroup]="detailsFormGroup" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="detailsFormGroup">
+        <div fxLayout="row" fxFlex="100" class="pb-24 font-size-20 font-weight-bold">
+            {{orderAddConfig.commonLb.title}}
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <mat-form-field appearance="outline" fxFlex="100" style="width: 100%">
+                <mat-label>{{orderAddConfig.commonLb.orderDescription}}</mat-label>
+                <input matInput formControlName="description" tabindex="1">
+                <mat-error>{{orderAddConfig.commonLb.orderDescriptionMsg}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="pb-24 font-size-18 font-weight-300">
+            {{orderAddConfig.commonLb.leadCapacity}}:
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <mat-form-field class="mr-16" appearance="outline" fxFlex="33">
+                <mat-label>{{orderAddConfig.commonLb.month}}</mat-label>
+                <input min="0" type="number" matInput formControlName="month" tabindex="2">
+            </mat-form-field>
+            <mat-form-field class="mr-16" appearance="outline" fxFlex="33">
+                <mat-label>{{orderAddConfig.commonLb.day}}</mat-label>
+                <input min="0" type="number" matInput formControlName="day" tabindex="3">
+            </mat-form-field>
+            <mat-form-field class="mr-16" appearance="outline" fxFlex="33">
+                <mat-label>{{orderAddConfig.commonLb.hour}}</mat-label>
+                <input min="0" type="number" matInput formControlName="hour" tabindex="4">
+            </mat-form-field>
+        </div>
+        <div>
+            <button *ngIf="!order.order_type_id; else cancel" mat-raised-button color="accent" matStepperPrevious>{{orderAddConfig.commonBtn.back}}</button>
+            <ng-template #cancel>
+                <button mat-raised-button color="accent" mat-button color="accent" tabindex="6" routerLink="/orders"
+                    (click)="onCancel()">{{orderAddConfig.commonBtn.cancel}}</button>
+            </ng-template>
+            <span fxFlex></span>
+            <a mat-raised-button *ngIf="user.roles[0]==='admin'" tabindex="4" color="accent" (click)="addFakeData()">{{orderAddConfig.commonBtn.fakeData}}</a>
+            <button mat-raised-button tabindex="5" color="accent" matStepperNext [disabled]="detailsFormGroup.invalid">{{orderAddConfig.commonBtn.next}}</button>
+        </div>
+    </form>
+</div>

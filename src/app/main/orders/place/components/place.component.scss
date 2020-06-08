@@ -1,0 +1,8 @@
+
+:host /deep/ .cal-week-view .cal-event {display: flex;
+    flex-direction: row; align-items: center}
+:host /deep/ .cal-day-view .cal-event {
+    display: flex;
+    flex-direction: row;
+}
+ :host /deep/ .cal-event i, mat-icon { font-size: 26px;}

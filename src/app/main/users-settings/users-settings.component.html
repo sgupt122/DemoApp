@@ -1,0 +1,26 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+  <div class="center">
+      <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 pl-0 filter-button"
+          [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+          <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="column"
+              fxLayoutAlign.gt-xs="center start">
+              <div class="h2"><strong>Users Settings</strong></div>
+          </div>
+      </div>
+      <div class="content-card" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+          <div class="content">
+              <mat-tab-group>
+                  <mat-tab label="Navigation's">
+                      <app-navigations></app-navigations>
+                  </mat-tab>
+                  <mat-tab label="Leads Action">
+                    <app-leads-action></app-leads-action>
+                </mat-tab>
+                <mat-tab label="Order Types">
+                    <app-order-types></app-order-types>
+                </mat-tab>
+              </mat-tab-group>
+          </div>
+      </div>
+  </div>
+</div>

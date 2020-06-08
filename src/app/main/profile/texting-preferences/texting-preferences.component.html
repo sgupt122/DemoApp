@@ -1,0 +1,178 @@
+<form fxLayout="column" #textPreferencesForm="ngForm" (ngSubmit)="save(textPreferencesForm.value)">
+    <div class="tab-content p-24" fusePerfectScrollbar fxFlex="100" fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.sunStime}}</mat-label>
+                <input matInput name="sunday_start_time" [(ngModel)]="preferences.sunday_start_time"
+                    [ngxTimepicker]="sunday_start_time" [format]="12" readonly [max]="preferences.sunday_end_time">
+                <ngx-material-timepicker #sunday_start_time></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.sunEtime}}</mat-label>
+                <input matInput name="sunday_end_time" [(ngModel)]="preferences.sunday_end_time"
+                    [ngxTimepicker]="sunday_end_time" [format]="12" readonly [min]="preferences.sunday_start_time">
+                <ngx-material-timepicker #sunday_end_time></ngx-material-timepicker>
+            </mat-form-field>
+            <div class="icon">
+                <i *ngIf="preferences.sunday_start_time && preferences.sunday_end_time" class="material-icons"
+                    (click)="deleteRecord('sunday')">
+                    delete
+                </i>
+                <i *ngIf="preferences.sunday_start_time && preferences.sunday_end_time" class="material-icons"
+                    (click)="copyRecord(preferences.sunday_start_time,preferences.sunday_end_time,'monday')">
+                    file_copy
+                </i>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.monStime}}</mat-label>
+                <input matInput name="monday_start_time" [(ngModel)]="preferences.monday_start_time"
+                    [ngxTimepicker]="monday_start_time" [format]="12" readonly [max]="preferences.monday_end_time">
+                <ngx-material-timepicker #monday_start_time></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.monEtime}}</mat-label>
+                <input matInput name="monday_end_time" [(ngModel)]="preferences.monday_end_time"
+                    [ngxTimepicker]="monday_end_time" [format]="12" readonly [min]="preferences.monday_start_time">
+                <ngx-material-timepicker #monday_end_time></ngx-material-timepicker>
+            </mat-form-field>
+            <div class="icon">
+                <i *ngIf="preferences.monday_start_time && preferences.monday_end_time" class="material-icons"
+                    (click)="deleteRecord('monday')">
+                    delete
+                </i>
+                <i *ngIf="preferences.monday_start_time && preferences.monday_end_time" class="material-icons"
+                    (click)="copyRecord(preferences.monday_start_time,preferences.monday_end_time,'tuesday')">
+                    file_copy
+                </i>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.tueStime}}</mat-label>
+                <input matInput name="tuesday_start_time" [(ngModel)]="preferences.tuesday_start_time"
+                    [ngxTimepicker]="tuesday_start_time" [format]="12" readonly [max]="preferences.tuesday_end_time">
+                <ngx-material-timepicker #tuesday_start_time></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.tueEtime}}</mat-label>
+                <input matInput name="tuesday_end_time" [(ngModel)]="preferences.tuesday_end_time"
+                    [ngxTimepicker]="tuesday_end_time" [format]="12" readonly [min]="preferences.tuesday_start_time">
+                <ngx-material-timepicker #tuesday_end_time></ngx-material-timepicker>
+            </mat-form-field>
+            <div class="icon">
+                <i *ngIf="preferences.tuesday_start_time && preferences.tuesday_end_time" class="material-icons"
+                    (click)="deleteRecord('tuesday')">
+                    delete
+                </i>
+                <i *ngIf="preferences.tuesday_start_time && preferences.tuesday_end_time" class="material-icons"
+                    (click)="copyRecord(preferences.tuesday_start_time,preferences.tuesday_end_time,'wednesday')">
+                    file_copy
+                </i>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.wedStime}}</mat-label>
+                <input matInput name="wednesday_start_time" [(ngModel)]="preferences.wednesday_start_time"
+                    [ngxTimepicker]="wednesday_start_time" [format]="12" readonly
+                    [max]="preferences.wednesday_end_time">
+                <ngx-material-timepicker #wednesday_start_time></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.wedEtime}}</mat-label>
+                <input matInput name="wednesday_end_time" [(ngModel)]="preferences.wednesday_end_time"
+                    [ngxTimepicker]="wednesday_end_time" [format]="12" readonly
+                    [min]="preferences.wednesday_start_time">
+                <ngx-material-timepicker #wednesday_end_time></ngx-material-timepicker>
+            </mat-form-field>
+            <div class="icon">
+                <i *ngIf="preferences.wednesday_start_time && preferences.wednesday_end_time" class="material-icons"
+                    (click)="deleteRecord('wednesday')">
+                    delete
+                </i>
+                <i *ngIf="preferences.wednesday_start_time && preferences.wednesday_end_time" class="material-icons"
+                    (click)="copyRecord(preferences.wednesday_start_time,preferences.wednesday_end_time,'thursday')">
+                    file_copy
+                </i>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.thurStime}}</mat-label>
+                <input matInput name="thursday_start_time" [(ngModel)]="preferences.thursday_start_time"
+                    [ngxTimepicker]="thursday_start_time" [format]="12" readonly [max]="preferences.thursday_end_time">
+                <ngx-material-timepicker #thursday_start_time></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.thurEtime}}</mat-label>
+                <input matInput name="thursday_end_time" [(ngModel)]="preferences.thursday_end_time"
+                    [ngxTimepicker]="thursday_end_time" [format]="12" readonly [min]="preferences.thursday_start_time">
+                <ngx-material-timepicker #thursday_end_time></ngx-material-timepicker>
+            </mat-form-field>
+            <div class="icon">
+                <i *ngIf="preferences.thursday_start_time && preferences.thursday_end_time" class="material-icons"
+                    (click)="deleteRecord('thursday')">
+                    delete
+                </i>
+                <i *ngIf="preferences.thursday_start_time && preferences.thursday_end_time" class="material-icons"
+                    (click)="copyRecord(preferences.thursday_start_time,preferences.thursday_end_time,'friday')">
+                    file_copy
+                </i>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.friStime}}</mat-label>
+                <input matInput name="friday_start_time" [(ngModel)]="preferences.friday_start_time"
+                    [ngxTimepicker]="friday_start_time" [format]="12" readonly [max]="preferences.friday_end_time">
+                <ngx-material-timepicker #friday_start_time></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.friEtime}}</mat-label>
+                <input matInput name="friday_end_time" [(ngModel)]="preferences.friday_end_time"
+                    [ngxTimepicker]="friday_end_time" [format]="12" readonly [min]="preferences.friday_start_time">
+                <ngx-material-timepicker #friday_end_time></ngx-material-timepicker>
+            </mat-form-field>
+            <div class="icon">
+                <i *ngIf="preferences.friday_start_time && preferences.friday_end_time" class="material-icons"
+                    (click)="deleteRecord('friday')">
+                    delete
+                </i>
+                <i *ngIf="preferences.friday_start_time && preferences.friday_end_time" class="material-icons"
+                    (click)="copyRecord(preferences.friday_start_time,preferences.friday_end_time,'saturday')">
+                    file_copy
+                </i>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.satStime}}</mat-label>
+                <input matInput name="saturday_start_time" [(ngModel)]="preferences.saturday_start_time"
+                    [ngxTimepicker]="saturday_start_time" [format]="12" readonly [max]="preferences.saturday_end_time">
+                <ngx-material-timepicker #saturday_start_time></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="46">
+                <mat-label>{{textPreferencesConfig.textPreferencesLb.satEtime}}</mat-label>
+                <input matInput name="saturday_end_time" [(ngModel)]="preferences.saturday_end_time"
+                    [ngxTimepicker]="saturday_end_time" [format]="12" readonly [min]="preferences.saturday_start_time">
+                <ngx-material-timepicker #saturday_end_time></ngx-material-timepicker>
+            </mat-form-field>
+            <div class="icon">
+                <i *ngIf="preferences.saturday_start_time && preferences.saturday_end_time" class="material-icons"
+                    (click)="deleteRecord('saturday')">
+                    delete
+                </i>
+            </div>
+        </div>
+        <div class="button-block">
+            <!-- <span fxFlex></span> -->
+            <button class="delete-btn" type="button" [disabled]="isDisablePreference()" (click)="deleteAll()"
+                mat-raised-button color="accent">{{textPreferencesConfig.textPreferencesLb.deleteAll}}
+            </button>
+            <button type="submit" [disabled]="isDisablePreference()" mat-raised-button
+                color="accent">{{textPreferencesConfig.save}}</button>
+        </div>
+    </div>
+</form>

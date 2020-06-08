@@ -1,0 +1,12 @@
+<div fxLayout="column">
+  <div class="h5 pb-24" fxLayout="row" fxLayoutAlign="start start">{{exportTypeConfig.selectMsg}}</div>
+  <div fxLayout="row wrap" fxLayoutAlign="center">
+    <div class="pb-24 pr-24 cursor-pointer" fxLayout="column" fxLayoutAlign="center center"
+      (click)="OnExportType('excel')">
+      <img src="assets/icons/excel-type.png"> {{exportTypeConfig.excel}}
+    </div>
+    <div class="pb-24 cursor-pointer" fxLayout="column" fxLayoutAlign="center center" (click)="OnExportType('ics')">
+      <img src="assets/icons/ics-type.png">{{exportTypeConfig.ics}}
+    </div>
+  </div>
+</div>

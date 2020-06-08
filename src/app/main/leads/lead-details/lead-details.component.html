@@ -1,0 +1,182 @@
+<ng-container *ngIf="currentLeadData">
+    <div fxFlex="100" class="list-data">
+        <div class="popup">
+            <div class="detail">
+                <div class="block">
+                    {{leadDetailText.commonLb.orderDescription}}: <span>{{currentLeadData.order_description}}</span>
+                </div>
+                <div class="block">
+                    {{leadDetailText.commonLb.leadId}}: <span>{{currentLeadData.id}}</span>
+                </div>
+            </div>
+            <div class="card-header">
+                <div class="user-icon">
+                    <mat-icon class="user-icon-mat" class="{{statuses[currentLeadData.status].class}} status-icons"
+                        [ngClass]="statuses[currentLeadData.status].class">
+                        {{ statuses[currentLeadData.status].icon }}
+                    </mat-icon>
+                </div>
+                <div class="user-detail">
+                    <h2>
+                        {{currentLeadData.first_name}} {{currentLeadData.last_name}}
+                    </h2>
+
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example phone icon">phone</mat-icon>
+                        </span>
+                        {{currentLeadData.phone}}
+                    </p>
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example email icon">email</mat-icon>
+                        </span>
+                        {{currentLeadData.email}}
+                    </p>
+
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+
+            <div class="row">
+                <div class="left-side">
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example email icon">home</mat-icon>
+                        </span>
+                        {{currentLeadData.address}}
+                    </p>
+                    <p>
+                        <span class="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example place icon">place</mat-icon>
+                        </span>
+                        {{currentLeadData.city}}, {{currentLeadData.state}},<br> {{currentLeadData.postal_code}}
+                    </p>
+
+
+                    <mat-divider class="mar-15"> </mat-divider>
+                    <p class="mt-5">
+
+                        <strong class="mt-5 block">{{leadDetailText.commonLb.receivedDate}}</strong>
+
+                        {{currentLeadData.received_date}}
+                    </p>
+                </div>
+                <div class="right-side">
+
+                    <mat-list>
+                        <mat-list-item>
+                            <h2 matLine class="font-weight-bold list-heading"> {{leadDetailText.campaign}}
+                            </h2>
+                            <p matLine class="pt-5">
+                                <span class="mat-accent">{{leadDetailText.name}}:
+                                    {{currentLeadData.first_name}}
+                                    {{currentLeadData.last_name}} </span>
+                            </p>
+                            <p matLine class="pt-5" *ngIf="currentLeadData.code">
+                                <span class="mat-accent">{{leadDetailText.commonLb.code}}: {{currentLeadData.code}}
+                                </span>
+                            </p>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <h2 matLine class="font-weight-bold list-heading"> {{leadDetailText.commonLb.disposition}}
+                            </h2>
+                            <p matLine class="pt-5">
+                                <span class="mat-accent">{{leadDetailText.name}}: {{
+                                    currentLeadData?.disposition?.name }} </span>
+                            </p>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <h2 matLine class="font-weight-bold list-heading"> {{leadDetailText.commonLb.provider}}</h2>
+                            <p matLine class="pt-5">
+                                <span class="mat-accent">{{leadDetailText.name}}:
+                                    {{currentLeadData.provider.name}} </span>
+                            </p>
+                            <p matLine class="pt-5" *ngIf="currentLeadData.provider.code">
+                                <span class="mat-accent">{{leadDetailText.commonLb.code}}:
+                                    {{currentLeadData.provider.code}} </span>
+                            </p>
+                        </mat-list-item>
+                    </mat-list>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- <mat-list>
+                <mat-list-item>
+                    <p matLine class="font-weight-bold list-heading"> Lead ID: <span>{{currentLeadData.id}}</span></p>
+                    <p matLine class="font-weight-bold list-heading"> Order ID: <span>{{currentLeadData.order_id}}</span></p>
+                </mat-list-item>
+                <mat-list-item>
+                    <h2 matLine class="font-weight-bold list-heading"> Provider</h2>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Name: {{currentLeadData.provider.name}} </span>
+                    </p>
+                    <p matLine class="pt-5" *ngIf="currentLeadData.provider.code">
+                        <span class="mat-accent">Code: {{currentLeadData.provider.code}} </span>
+                    </p>
+                </mat-list-item>
+                <mat-list-item>
+                    <h2 matLine class="font-weight-bold list-heading"> Campaign </h2>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Name: {{currentLeadData.name}} </span>
+                    </p>
+                    <p matLine class="pt-5" *ngIf="currentLeadData.code">
+                        <span class="mat-accent">Code: {{currentLeadData.code}} </span>
+                    </p>
+                </mat-list-item>
+                <mat-list-item>
+                    <h2 matLine class="font-weight-bold list-heading"> Disposition</h2>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Name: {{currentLeadData.disposition.name}} </span>
+                    </p>
+                </mat-list-item>
+                <mat-list-item>
+                    <h2 matLine class="font-weight-bold list-heading"> User</h2>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">First Name: </span>
+                        <span class="mat-accent">{{currentLeadData.first_name}}</span>
+                    </p>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Last Name: </span>
+                        <span class="mat-accent">{{currentLeadData.last_name}}</span>
+                    </p>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Email: </span>
+                        <span class="mat-accent">{{currentLeadData.email}} </span>
+                    </p>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Phone: </span>
+                        <span class="mat-accent">{{currentLeadData.phone}} </span>
+                    </p>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Address: </span>
+                        <span class="mat-accent">{{currentLeadData.address}} </span>
+                    </p>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">City: </span>
+                        <span class="mat-accent">{{currentLeadData.city}} </span>
+                    </p>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">State: </span>
+                        <span class="mat-accent">{{currentLeadData.state}} </span>
+                    </p>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Zipcode: </span>
+                        <span class="mat-accent">{{currentLeadData.postal_code}} </span>
+                    </p>
+                    <p matLine class="pt-5">
+                        <span class="mat-accent">Received date: </span>
+                        <span class="mat-accent">{{currentLeadData.received_date}} </span>
+                    </p>
+                </mat-list-item>
+
+            </mat-list> -->
+    </div>
+
+</ng-container>

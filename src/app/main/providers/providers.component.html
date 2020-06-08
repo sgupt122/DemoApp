@@ -1,0 +1,40 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth">
+    <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 filter-button"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <div class="h2 mt-16"><strong>{{providersConfig}}</strong></div>
+        </div>
+        <span fxFlex></span>
+        <button mat-flat-button class="mr-4" color="accent" (click)="changeColumnName()">Change Column</button>
+        <button mat-flat-button class="mr-4" color="accent" (click)="toggleSidebarOpen('providersColumn')">
+            Hide/Show column
+        </button>
+    </div>
+    <div class="content p-24" fxFlex="90px" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <app-providers-filter [rows]="rows$ | async" (tableOffsetReset)="updateTableOffset($event)"
+            (tableRowsUpdated)="updateTableRows($event)"></app-providers-filter>
+    </div>
+    <div class="content p-24 mb-60" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <app-providers-table [errorMessage]="errorMessage$ | async" [providersColumns]="providersColumns$ | async" [selectedProvider]="selectedProvider$ | async"
+            [filteredRows]="filteredRows" (selectedUpdated)="updateSelectedProvider($event)"></app-providers-table>
+    </div>
+    <fuse-sidebar name="providersColumn" position="right" class="providers-filter">
+        <h1 class="ml-4">Hide/Show column</h1>
+        <div class="p-12">
+            <ng-container *ngFor="let column of (providersColumns$ | async); let i = index">
+                <div>
+                    <mat-checkbox [checked]="column.flag" (change)="changeColumnFlag($event.checked,i)">
+                        {{ column.name }}
+                    </mat-checkbox>
+                </div>
+            </ng-container>
+        </div>
+        <button class="ml-8 mr-8 save-button" type="button" mat-flat-button [disabled]="isSaveBtnDisabled" color="accent"
+            (click)="saveColumnHideShow()">
+            save
+        </button>
+    </fuse-sidebar>
+</div>
+
+<app-providers-add-edit *ngIf="isAdmin" [selectedProvider]="selectedProvider$ | async"
+    (newProviderClicked)="newProvider()"></app-providers-add-edit>

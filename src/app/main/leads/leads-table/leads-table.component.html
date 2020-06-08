@@ -1,0 +1,60 @@
+<ngx-datatable #table class="material" [rows]="leadsResponse.data" [loadingIndicator]="loadingIndicator"
+    [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [externalPaging]="true"
+    [selected]="selected" [selectionType]="'single'" [selectCheck]="singleSelectCheck" (select)='onSelect()'
+    [count]="leadsResponse.meta.pagination?.total" [offset]="this.leadsResponse.meta.pagination?.current_page - 1"
+    [limit]="leadsResponse.meta.pagination?.per_page" (page)='setPage($event)' clickOutside
+    (clickOutside)="clickOutside()" *ngIf="leadsResponse && leadsColumns">
+    <ngx-datatable-column [width]="20" *ngIf="leadsColumns[0].flag"  name={{leadsColumns[0].name}} prop={{leadsColumns[0].prop}}>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <mat-icon class="{{value.class}} status-icons" [ngClass]="value.class">{{value.icon}}</mat-icon>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="20" *ngIf="leadsColumns[1].flag"  name={{leadsColumns[1].name}} prop={{leadsColumns[1].prop}}>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="leadsColumns[2].flag"  name={{leadsColumns[2].name}} prop={{leadsColumns[2].prop}}>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="isLeadsActionShow" [width]="350" name={{leadsColumns[3].name}} prop={{leadsColumns[3].prop}} [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <app-leads-actions (dispositionUpdated)="updateDisposition($event)" [leadFilters]="leadFilters"
+                [clientDispositions]="clientDispositions"[isAction]="isActionArray" [selectedLead]="selectedLead" [lead]="row">
+            </app-leads-actions>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="leadsColumns[4].flag"  name={{leadsColumns[4].name}} prop={{leadsColumns[4].prop}}>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="leadsColumns[5].flag" name={{leadsColumns[5].name}} prop={{leadsColumns[5].prop}}>
+        <ng-template let-value="value" ngx-datat
+        able-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="leadsColumns[6].flag" name={{leadsColumns[6].name}} prop={{leadsColumns[6].prop}}>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value | date }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="leadsColumns[7].flag" name={{leadsColumns[7].name}} prop={{leadsColumns[7].prop}}>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value.date | date }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="leadsColumns[8].flag"  name={{leadsColumns[8].name}} prop={{leadsColumns[8].prop}}>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="leadsColumns[9].flag"  name={{leadsColumns[9].name}} prop={{leadsColumns[9].prop}}>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span class="adress-text">{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

@@ -1,0 +1,25 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth">
+    <div fxLayout="row" fxLayoutAlign="space-around center" class="content p-24 filter-button"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <h1>Orders</h1>
+        </div>
+        <span fxFlex></span>
+        <app-orders-add-edit [selectedOrder]="selectedOrder$ | async" (newOrderClicked)="newOrder($event)"
+            [orderTypes]="orderTypes$ | async" [show]="show" [flatBtn]="true"></app-orders-add-edit>
+        
+        <app-orders-buttons [user]="user" [selectedOrder]="selectedOrder$ | async" [orderColumns]="orderColumns$ | async" (updateStatus)="updateOrder($event)"
+            [show]="show"></app-orders-buttons>
+    
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 pt-0"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+       
+        <app-orders-table class="width-100" (selectedUpdated)="updateSelected($event)"
+            [errorMessage]="errorMessage$ | async" [loading]="loading" (requestLoading)="loadingRequest($event)"
+            [rows]="rows$ | async" [selectedOrder]="selectedOrder$ | async" [orderColumns]="orderColumns$ | async" (deselectRow)="deselectRow($event)">
+        </app-orders-table>
+    </div>
+    <app-orders-add-edit [selectedOrder]="selectedOrder$ | async" (newOrderClicked)="newOrder($event)"
+        [orderTypes]="orderTypes$ | async" [show]="show" [flatBtn]="false"></app-orders-add-edit>
+</div>

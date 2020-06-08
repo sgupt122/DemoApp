@@ -1,0 +1,47 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth">
+    <div fxLayout="row" fxLayoutAlign="start center" class="content p-24 filter-button"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <h1>{{customers.customer}}</h1>
+        </div>
+        <span fxFlex></span>
+        <button mat-flat-button class="mr-4" color="accent" (click)="changeColumnName()">ChangeColumn</button>
+        <button mat-flat-button class="mr-4" color="accent" (click)="toggleSidebarOpen('customerColumn')">
+            Hide/Show column
+        </button>
+        <button mat-flat-button class="mr-4" color="accent" (click)="viewCustomerDetails()"
+            [disabled]="show || isCustomerSelected">{{customers.commonBtn.detail}}</button>
+        <button mat-flat-button color="accent" (click)="toggleSidebarOpen('customersFilter')">
+            <mat-icon>search</mat-icon>
+            {{customers.commonBtn.filter}}
+        </button>
+        <fuse-sidebar name="customersFilter" position="right" class="customers-filter">
+            <app-customers-filter [customerFilters]="customerFilters$ | async" (formResetClicked)="formReset()"
+                (filterButtonClicked)="setFilters($event)"></app-customers-filter>
+        </fuse-sidebar>
+        <fuse-sidebar name="customerColumn" position="right" class="customer-filter">
+            <h1 class="ml-4">Hide/Show column</h1>
+            <div class="p-12">
+                <ng-container *ngFor="let column of (customerColumns$ | async); let i = index">
+                    <div>
+                        <mat-checkbox [checked]="column.flag" (change)="changeColumnFlag($event.checked,i)">
+                            {{ column.name }}
+                        </mat-checkbox>
+                    </div>
+                </ng-container>
+            </div>
+            <button class="ml-8 mr-8" type="button" mat-flat-button [disabled]="isSaveBtnDisabled" color="accent"
+                (click)="saveColumnHideShow()">
+                save
+            </button>
+        </fuse-sidebar>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 pt-0"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <app-customers-table class="width-100" [selectedCustomer]="selectedCustomer$ | async"
+            [customersResponse]="customersResponse$ | async" [customerFilters]="customerFilters$ | async"
+            [customerColumns]="customerColumns$ | async" (pageSet)="setPage($event)" (selectedUpdated)="updateSelectedCustomer($event)"
+            (deselectRow)="deselectRow($event)">
+        </app-customers-table>
+    </div>
+</div>

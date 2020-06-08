@@ -1,0 +1,9 @@
+@import '../../icon-global.scss';
+@import '../../main.popup.global.scss';
+
+.lead-popup .card-header .user-detail p .icon{
+   height: 22px;
+}
+.lead-popup .card-header .user-detail p { margin-bottom: 8px;}
+.flex-end { justify-content: flex-end;}
+.labelblock {font-size: 14px; font-weight: bold;}

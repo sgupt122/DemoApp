@@ -1,0 +1,12 @@
+<button *ngIf="selectedPrice?.id; else elseBlock" mat-fab color="accent" class="add-price-button"
+        [routerLink]="['edit']" aria-label="edit price"
+        [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <mat-icon>edit</mat-icon>
+</button>
+<ng-template #elseBlock>
+    <button mat-fab color="accent" class="add-price-button"
+            [routerLink]="['add']" aria-label="add price"
+            [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}" (click)="newPrice()">
+        <mat-icon>add</mat-icon>
+    </button>
+</ng-template>

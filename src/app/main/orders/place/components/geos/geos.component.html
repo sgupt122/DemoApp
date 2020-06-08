@@ -1,0 +1,156 @@
+<!-- ZipList -->
+
+<div>
+    <div class="pull-right">
+
+        <div class="col-4">
+            <!-- DropDown:Radius/zipcode -->
+            <div class="m-0 p-0 width-100">
+                <mat-form-field class="w-100-p">
+                    <mat-label>{{orderAddInfo.commonLb.select}}</mat-label>
+                    <mat-select>
+                        <mat-option value="radius" (click)="onDropDownSelect('radius')">{{orderAddInfo.commonLb.radius}}
+                        </mat-option>
+                        <mat-option value="zipcode" (click)="onDropDownSelect('zipcode')">{{orderAddInfo.commonLb.zipcode}}
+                        </mat-option>
+                        <mat-option value="scf" (click)="onDropDownSelect('scf')">Scf
+                        </mat-option>
+                        <mat-option value="state" (click)="onDropDownSelect('state')">{{orderAddInfo.commonLb.state}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="geosFormGroup.value.data.length===0">
+                <mat-error>{{orderAddInfo.commonLb.postalCodeMsg}}</mat-error>
+            </div>
+        </div>
+        <div class="col-4">
+            <!-- Zip input -->
+            <div *ngIf="zipSelect">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <form class="m-0 p-0 width-100" [formGroup]="zipForm">
+                        <mat-form-field appearance="outline" fxFlex="100" (keydown.enter)="onAdd(zipForm.controls.zip.value)">
+                            <mat-label>{{orderAddInfo.commonInfo.commonFormLabels.postalCode}}</mat-label>
+                            <input matInput formControlName="zip" #postalCode maxlength="5" (keypress)=_keyPress($event)>
+                            <mat-icon matSuffix class="secondary-text">markunread_mailbox</mat-icon>
+                            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+
+                        </mat-form-field>
+                        <button class="ml-8 mt-16" mat-mini-fab color="accent" [disabled]="zipForm.invalid" (click)="onAdd(zipForm.controls.zip.value)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="states.length > 0">
+                <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+                    <mat-form-field class="w-100-p">
+                        <mat-label>{{orderAddInfo.commonLb.selectState}}: </mat-label>
+                        <mat-select (selectionChange)="getCities($event.value)" *ngIf="states.length>0">
+                            <mat-option *ngFor="let state of states" [value]="state.id">
+                                {{state.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- scf select -->
+            <div *ngIf="scfSelect">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <form class="m-0 p-0 width-100" [formGroup]="scfForm">
+                        <mat-form-field appearance="outline" fxFlex="100" (keydown.enter)="onAdd(scfForm.controls.scf.value)">
+                            <mat-label>Scf Code</mat-label>
+                            <input matInput formControlName="scf" #scfCode maxlength="3" (keypress)=_keyPress($event)>
+                            <mat-icon matSuffix class="secondary-text">markunread_mailbox</mat-icon>
+                            <mat-hint align="end">{{scfCode.value.length}} / 3</mat-hint>
+
+                        </mat-form-field>
+                        <button class="ml-8 mt-16" mat-mini-fab color="accent" [disabled]="scfForm.invalid" (click)="onAdd(scfForm.controls.scf.value)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div *ngIf="radiusSelect">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <form class="m-0 p-0 width-100" [formGroup]="radiusForm">
+                        <mat-form-field appearance="outline" fxFlex="100" (keydown.enter)="onRadiusChange(radiusForm.controls.radius.value)">
+                            <mat-label>Radius in mile</mat-label>
+                            <input matInput formControlName="radius" (keypress)=_keyPress($event)>
+                            <mat-icon matSuffix class="secondary-text">markunread_mailbox</mat-icon>
+                        </mat-form-field>
+                        <button class="ml-8 mt-16" mat-mini-fab color="accent" (click)="onRadiusChange(radiusForm.controls.radius.value)">
+                            <mat-icon>add</mat-icon>
+                            <!-- Change Mile -->
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-4">
+            <div *ngIf="cities.length > 0">
+                <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+                    <mat-form-field class="w-100-p">
+                        <mat-label>{{orderAddInfo.commonLb.selectCity}}: </mat-label>
+                        <mat-select (selectionChange)="getZipCodes($event.value)" *ngIf="cities.length>0">
+                            <mat-option *ngFor="let city of cities" [value]="city.id">
+                                {{city.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <form [formGroup]="geosFormGroup" *ngIf="allZips.length > 0">
+        <div class="m-0 p-0 width-50">
+            <div class="flexblock">
+                <span class="mat-title">{{orderAddInfo.commonLb.zipcodeList}}</span>
+
+            </div>
+            <div class="clear"></div>
+            <ng-container *ngIf="allZips.length>0">
+                <ng-container *ngFor="let zip of allZips">
+                    <div class="zip-list">
+                        <div class="mat-body-1"><b>{{orderAddInfo.commonLb.state}}:</b> {{zip.state}}</div>
+                        <div class="mat-body-1"><b>{{orderAddInfo.commonLb.city}}:</b> {{zip.city}}</div>
+                        <mat-checkbox [checked]="onEditCheck(zip)" (change)="selectZipCode($event.checked,zip)">
+                            <b>{{orderAddInfo.commonLb.zipcode}}:</b>
+                            {{zip.zip}}
+                        </mat-checkbox>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </form>
+
+
+    <div class="clear"></div>
+    <!-- Map---->
+    <p fxLayout="row" fxLayoutAlign="start start" *ngIf="zipSelect || radiusSelect">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="mapZoom" (mapClick)="mapClicked($event)"
+            (zoomChange)="zoomChanged($event)">
+            <div *ngIf="radiusSelect">
+                <agm-circle [latitude]="latitude" [longitude]="longitude"  
+                [editable]="false" [radius]="radiusInMeter" [fillColor]="'red'">
+                </agm-circle>
+            </div>
+            <ng-container *ngIf="markers.length>0">
+                <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.latitude" [longitude]="m.longitude"
+                    [markerDraggable]="m.draggable">
+                    <agm-info-window>
+                        <strong>{{m.zip}}, {{m.city}}</strong>
+                    </agm-info-window>
+                </agm-marker>
+            </ng-container>
+        </agm-map>
+    </p>
+    <div>
+        <button mat-raised-button color="accent" matStepperPrevious>{{orderAddInfo.commonBtn.back}}</button>
+        <span fxFlex></span>
+        <button mat-raised-button color="accent" matStepperNext [disabled]="geosFormGroup.invalid">{{orderAddInfo.commonBtn.next}}</button>
+    </div>

@@ -1,0 +1,12 @@
+<button *ngIf="selectedAgent?.id; else elseBlock" mat-fab color="accent" class="add-agent-button"
+        [routerLink]="['edit']" aria-label="edit agent"
+        [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <mat-icon>edit</mat-icon>
+</button>
+<ng-template #elseBlock>
+    <button mat-fab color="accent" class="add-agent-button"
+            [routerLink]="['add']" aria-label="add agent"
+            [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}" (click)="newAgent()">
+        <mat-icon>add</mat-icon>
+    </button>
+</ng-template>

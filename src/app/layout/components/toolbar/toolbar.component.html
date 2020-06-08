@@ -1,0 +1,96 @@
+<mat-toolbar class="p-0 mat-elevation-z1">
+
+    <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+
+        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+
+            <button mat-icon-button class="navbar-toggle-button" *ngIf="!hiddenNavbar && !rightNavbar"
+                (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+                <mat-icon class="secondary-text">menu</mat-icon>
+            </button>
+
+            <div class="toolbar-separator" *ngIf="!hiddenNavbar && !rightNavbar" fxHide.gt-md></div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNavbar">
+                <div class="logo ml-16">
+                    <img alt="Logo" class="logo-icon background-image-logo" >
+                    <!-- <img alt="Logo" class="logo-icon" src="assets/images/logos/charcoal_horiz_line.png"> -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+
+            <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+
+                <div fxLayout="row" fxLayoutAlign="center center" *ngIf="user">
+                    <!--
+                    <button class="avatar-initial" mat-fab color="accent">
+                        {{ setAvatar() }}
+                    </button>
+                    -->
+                    <mat-icon class="secondary-text">person</mat-icon>
+                    <span class="username mr-12 ml-12" fxHide fxShow.gt-sm
+                        *ngIf="user.profile.first_name !== null && user.profile.last_name !== null">
+                        {{ user.profile.first_name }} {{ user.profile.last_name }}
+                    </span>
+                    <span class="username mr-12 ml-12" fxHide fxShow.gt-sm
+                        *ngIf="user.profile.first_name == null && user.profile.last_name == null">
+                        {{ user.name}}
+                    </span>
+                    <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+                </div>
+            </button>
+
+            <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+
+                <button mat-menu-item [routerLink]="['/profile']">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>{{toolbarConfigTxt.userMenu.profile}}</span>
+                </button>
+
+                <button mat-menu-item [routerLink]="['/settings']" *ngIf="user?.roles == 'admin'">
+                    <mat-icon>settings</mat-icon>
+                    <span>Users Settings</span>
+                </button>
+
+                <button mat-menu-item [routerLink]="['/calendar']">
+                    <mat-icon>calendar_today</mat-icon>
+                    <span>{{toolbarConfigTxt.userMenu.calendar}}</span>
+                </button>
+                <button mat-menu-item [routerLink]="['/payment']" *ngIf="user?.roles == 'agent'">
+                    <mat-icon>payment</mat-icon>
+                    <span>Payment</span>
+                </button>
+
+                <button mat-menu-item class="" [routerLink]="['/auth/logout']">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>{{toolbarConfigTxt.userMenu.logout}}</span>
+                </button>
+            </mat-menu>
+
+            <div class="toolbar-separator" fxHide fxShow.gt-xs></div>
+
+            <button mat-icon-button class="quick-panel-toggle-button" [routerLink]="['/faq']">
+                <mat-icon class="secondary-text">contact_support</mat-icon>
+            </button>
+
+            <div class="toolbar-separator" fxHide fxShow.gt-xs></div>
+
+            <div class="toolbar-separator" *ngIf="!hiddenNavbar && rightNavbar" fxHide fxShow.gt-xs></div>
+            <div class="toolbar-separator" fxHide.gt-md></div>
+            <button mat-icon-button class="quick-panel-toggle-button" (click)="toggleSidebarOpen('notificationPanel')"
+                aria-label="Toggle quick panel">
+                <mat-icon matBadge={{_notificationService.notificationCount}} matBadgeColor="accent"
+                    class="secondary-text">notifications
+
+                </mat-icon>
+                <span class="badge"></span>
+            </button>
+
+        </div>
+
+    </div>
+
+</mat-toolbar>

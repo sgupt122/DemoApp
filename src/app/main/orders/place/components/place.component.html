@@ -1,0 +1,36 @@
+<div class="page-layout simple fullwidth" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="start center" class="content p-24 filter-button" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <div fxLayout="column" fxLayoutAlign="start center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="start start">
+            <h1>{{orderConfig.placeOrder}}</h1>
+        </div>
+    </div>
+    <div class="content p-24 pt-0" fxLayout="column" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}" *ngIf="orderFormGroup">
+        <mat-horizontal-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="orderFormGroup.controls['details']" label="Details">
+                <app-details [order]="order" [detailsFormGroup]="orderFormGroup.controls['details']"></app-details>
+            </mat-step>
+            <mat-step [stepControl]="orderFormGroup.controls['types']" label="Lead Types">
+                <app-lead-types [leadTypesFormGroup]="orderFormGroup.controls['types']" [leadTypes]="leadTypes" [order]="order"
+                    [isEditMode]="isEditMode"></app-lead-types>
+            </mat-step>
+            <mat-step [stepControl]="orderFormGroup.controls['geos']" label="Geographies">
+                <app-geos [geosFormGroup]="orderFormGroup.controls['geos']" [order]="order" [isEditMode]="isEditMode">
+                </app-geos>
+            </mat-step>
+            <mat-step [stepControl]="orderFormGroup.controls['schedules']" label="Schedule">
+                <app-order-schedule [scheduleFormGroup]="orderFormGroup.controls['schedules']" [order]="order"
+                    [isEditMode]="isEditMode"></app-order-schedule>
+            </mat-step>
+            <mat-step [stepControl]="orderFormGroup.controls.distributions" label="Distribution">
+                <app-distributions [distributionFormGroup]="orderFormGroup.controls.distributions" [distributionTypes]="distributionTypes"
+                    [order]="order" [isEditMode]="isEditMode">
+                </app-distributions>
+            </mat-step>
+            <mat-step label="Review">
+                <app-review [stepper]="stepper" (leadTypesOrder)="getLeadTypes($event)" [orderFormGroup]="orderFormGroup"
+                    [order]="order" [isEditMode]="isEditMode" (saveOrder)="save()">
+                </app-review>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>

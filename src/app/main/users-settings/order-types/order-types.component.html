@@ -1,0 +1,36 @@
+<ng-container>
+  <div fxFlex="100" class="tab-content p-24">
+    <div class="row">
+      <p>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Select Role</mat-label>
+          <mat-select #selectRole name="role" (selectionChange)="addRoleType(selectRole.value)" required>
+            <mat-option value="">Select Role</mat-option>
+            <mat-option *ngFor="let role of userRoles" value="{{role.id}}">
+              {{ role.name | titlecase }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+    </div>
+    <ng-container *ngIf="selectRole.value && userRoleOptions['role_id']">
+      <div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+        <div class="pb-24" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start start" style="width: 1000px">
+          <div class="pb-12" fxFlex="100" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start start">
+            <ng-container *ngFor="let option of userRoleOptions['navigation']['order-types'] | keyvalue">
+              <div fxFlex="35">
+                <mat-checkbox [checked]="option.value" (change)="roleOptionSelected($event.checked,option)">
+                  {{ option.key | titlecase }}
+                </mat-checkbox>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="alignment">
+        <button type="submit" [disabled]="isSaveBtnDisabled" mat-raised-button color="accent"
+          (click)="onSubmit()">Submit</button>
+      </div>
+    </ng-container>
+
+  </div>
+</ng-container>

@@ -1,0 +1,32 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+    <div class="center">
+        <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 pl-0 filter-button"
+            [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+            <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="column"
+                fxLayoutAlign.gt-xs="center start">
+                <div class="h2"><strong>{{profileConfig}}</strong></div>
+            </div>
+        </div>
+        <div class="content-card" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+            <div class="content">
+                <mat-tab-group>
+                    <mat-tab label="Basic Info">
+                        <app-basic-info [user]="user"></app-basic-info>
+                    </mat-tab>
+                    <mat-tab label="Change Password">
+                        <app-change-password></app-change-password>
+                    </mat-tab>
+                    <mat-tab label="Texting Preferences">
+                        <app-texting-preferences [preferences]="preferences$ | async"
+                            [textingPreferencesExist]="textingPreferencesExist$ | async"
+                            (createTextingPreferences)="textingPreferencesCreated($event)"
+                            (updateTextingPreferences)="textingPreferencesUpdated($event)"></app-texting-preferences>
+                    </mat-tab>
+                    <mat-tab label="Permissions">
+                        <app-permissions></app-permissions>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+    </div>
+</div>

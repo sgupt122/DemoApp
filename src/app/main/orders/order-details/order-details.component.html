@@ -1,0 +1,116 @@
+<ng-container *ngIf="currentOrderData">
+    <div fxFlex="100" class="list-data">
+        <div class="customer-popup lead-popup">
+            <div class="customerID-detail row">
+                <div class="order-block col-6">
+                    {{orderDetailConfigText.orderDetails.description}}: <span>{{currentOrderData.description}}</span>
+                </div>
+                <div class="customerID-block col-6 t-right">
+                    {{orderDetailConfigText.commonLb.commonFormLabels.timezone}} :
+                    <span> {{currentOrderData.timezone}} </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 ">
+                    {{orderDetailConfigText.orderDetails.userId}}: <span>{{currentOrderData.user_id}}</span>
+                </div>
+                <div class="customerID-block col-6 t-right">
+                    {{orderDetailConfigText.orderDetails.month}} :
+                    <span> {{currentOrderData.month}} </span>
+                </div>
+            </div>
+            <div class="height15px"></div>
+            <mat-divider></mat-divider>
+            <div class="overflo-scroll">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="goes">
+                            <strong class="mt-5 block">{{orderDetailConfigText.orderDetails.geo}}:</strong>
+                            <ng-container *ngIf="currentOrderData.geos.length > 0">
+                                <ng-container *ngFor="let geoObj of currentOrderData.geos">
+                                    {{geoObj.zip}}
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider class="mar-15"> </mat-divider>
+                <div class="height15px"></div>
+                <ng-container *ngIf="currentOrderData.distributions.length > 0">
+                    <h2 matLine class="font-weight-bold list-heading">
+                        {{orderDetailConfigText.orderDetails.distribution}} </h2>
+                    <div class="row">
+                        <ng-container *ngFor="let distribution of currentOrderData.distributions">
+                            <div class="col-6">
+                                <div class="mb-5">
+                                    {{orderDetailConfigText.orderDetails.typeId}}:
+                                    <span class="mat-accent"> {{distribution.order_distribution_type_id}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-5">
+                                    {{orderDetailConfigText.orderDetails.receipt}}:
+                                    <span class="mat-accent"> {{distribution.recipient}} </span>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                <div class="height15px"></div>
+                <mat-divider class="mar-15"> </mat-divider>
+                <div class="height15px"></div>
+                <h2 matLine class="font-weight-bold list-heading">{{orderDetailConfigText.orderDetails.schedules}} </h2>
+                <div class="row">
+                    <div *ngIf="currentOrderData.schedules.length > 0">
+                        <div *ngFor="let schedule of currentOrderData.schedules | GroupBy : 'day' ">
+                            <div class="col-6">
+                                <div class="mb-5">
+                                    <span class="mat-accent"><strong>{{orderDetailConfigText.orderDetails.day}}:
+                                        </strong>{{days[schedule.key]}} </span>
+                                </div>
+                                <div *ngFor="let val of schedule.value">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="mb-5">
+                                                <span class="mat-accent"> {{val.start_time | date: 'shortTime'}} -
+                                                    {{val.end_time | date: 'shortTime'}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="height15px"></div>
+                <mat-divider></mat-divider>
+                <div class="height15px"></div>
+                <div *ngIf="currentOrderData.providers.length > 0">
+                    <h2 matLine class="font-weight-bold list-heading">{{orderDetailConfigText.commonLb.commonFormLabels.leadTypes}}
+                    </h2>
+                    <div>
+                        <div class="flex" *ngFor="let provider of currentOrderData.providers | GroupBy: 'campaign_code'">
+                            <div class="col-6 order-border">
+                                <span class="mat-accent"><strong>{{orderDetailConfigText.orderDetails.leadType}}:
+                                    </strong>{{provider.key}} </span>
+
+                            </div>
+                            <div class="col-6 order-border">
+                                <strong>{{orderDetailConfigText.orderDetails.provider}}:</strong>
+                                <div *ngFor="let campaign of provider.value">
+
+
+                                    - {{campaign.name}}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

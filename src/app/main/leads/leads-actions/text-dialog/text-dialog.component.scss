@@ -1,0 +1,9 @@
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #58595b !important;
+}
+
+::ng-deep mat-form-field {
+    .mat-hint, input, ::placeholder, .mat-form-field-label {
+        color: #58595b !important;
+    }
+}

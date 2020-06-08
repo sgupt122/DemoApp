@@ -1,0 +1,41 @@
+<ngx-datatable #table class="material" [rows]="transactionsResponse.data" [loadingIndicator]="loading"
+    [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [externalPaging]="true">
+    <!-- [count]="transactionsResponse.meta.pagination.total"
+    [offset]="this.transactionsResponse.meta.pagination.current_page - 1"
+    [limit]="transactionsResponse.meta.pagination.per_page" (page)='setPage($event)'     -->
+    <ngx-datatable-column *ngIf="transactionColumns[0].flag" name={{transactionColumns[0].name}} prop="id">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="transactionColumns[1].flag" name={{transactionColumns[1].name}} prop="user_id">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="transactionColumns[2].flag" name={{transactionColumns[2].name}} prop="description">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="transactionColumns[3].flag" name={{transactionColumns[3].name}} prop="subsidy">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="transactionColumns[4].flag" name={{transactionColumns[4].name}} prop="amount">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="transactionColumns[5].flag" name={{transactionColumns[5].name}} prop="balance">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <span>{{ value }}</span>
+            </ng-template>
+        </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="transactionColumns[6].flag" name={{transactionColumns[6].name}} prop="created_at.date">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ value | date: 'mediumDate'}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

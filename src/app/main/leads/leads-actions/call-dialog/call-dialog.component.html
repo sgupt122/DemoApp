@@ -1,0 +1,19 @@
+<div [hidden]="!loading" style="width: 203px; height: 157px; position: absolute;">
+    <mat-spinner color="accent" style="top: 10%; left: 25%; position: absolute;"></mat-spinner>
+</div>
+<h2 mat-dialog-title>{{callConfigTxt.commonLb.title}}</h2>
+<mat-dialog-content class="pb-24">
+    <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start">
+        <div class="pb-12" fxFlex="100" fxLayout="row">
+            {{callConfigTxt.name}}: {{ lead.first_name }} {{ lead.last_name }}
+        </div>
+        <div fxFlex="100" fxLayout="row">
+            {{callConfigTxt.number}}: {{ lead.phone }}
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{callConfigTxt.commonBtn.close}}</button>
+    <span fxFlex></span>
+    <button mat-button (click)="call()">{{callConfigTxt.commonBtn.call}}</button>
+</mat-dialog-actions>

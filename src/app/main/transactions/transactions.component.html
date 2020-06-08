@@ -1,0 +1,44 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth">
+    <div class="top-bg"></div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" class="content p-24 filter-button"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <h1>{{transactionConfig.transaction.transactions}}</h1>
+        </div>
+        <span fxFlex></span>
+        <button mat-flat-button class="mr-4" color="accent" (click)="changeColumnName()">ChangeColumn</button>
+        <button mat-flat-button class="mr-4" color="accent" (click)="toggleSidebarOpen('transactionsColumn')">
+            Hide/Show column
+        </button>
+        <button mat-flat-button color="accent" (click)="toggleSidebarOpen('transactionsFilter')">
+            <mat-icon>search</mat-icon>
+            {{transactionConfig.commonBtn.filter}}
+        </button>
+        <fuse-sidebar name="transactionsFilter" position="right" class="transactions-filter">
+            <app-transactions-filter [filters]="filters$ | async" (formResetClicked)="formReset()"
+                (filterButtonClicked)="setFilters($event)"></app-transactions-filter>
+        </fuse-sidebar>
+        <fuse-sidebar name="transactionsColumn" position="right" class="transactions-filter">
+            <h1 class="ml-4">Hide/Show column</h1>
+            <div class="p-12">
+                <ng-container *ngFor="let column of (transactionColumns$ | async); let i = index">
+                    <div>
+                        <mat-checkbox [checked]="column.flag" (change)="changeColumnFlag($event.checked,i)">
+                            {{ column.name }}
+                        </mat-checkbox>
+                    </div>
+                </ng-container>
+            </div>
+            <button class="ml-8 mr-8 save-button" type="button" mat-flat-button [disabled]="isSaveBtnDisabled" color="accent"
+                (click)="saveColumnHideShow()">
+                save
+            </button>
+        </fuse-sidebar>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 pt-0"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <app-transactions-table class="width-100" [transactionColumns]="transactionColumns$ | async"
+            [transactionsResponse]="transactionsResponse$ | async" [filters]="filters$ | async" [error]="error$ | async"
+            (pageSet)="setPage($event)"></app-transactions-table>
+    </div>
+</div>

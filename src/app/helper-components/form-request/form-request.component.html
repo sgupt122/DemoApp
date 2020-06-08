@@ -1,0 +1,7 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="p-24 success-bar"
+    *ngIf="success" [@animate]="{ value: '*', params: { delay: '200ms', y: '100px' } }">
+    Saved
+</div>
+<div *ngIf="sending" class="sending-overlay">
+    <mat-spinner color="accent" class="sending-mat-spinner"></mat-spinner>
+</div>

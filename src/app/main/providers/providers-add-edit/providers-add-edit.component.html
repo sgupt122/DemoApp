@@ -1,0 +1,12 @@
+<button *ngIf="selectedProvider?.id; else elseBlock" mat-fab color="accent" class="add-provider-button"
+        [routerLink]="['edit']" aria-label="edit provider"
+        [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <mat-icon>edit</mat-icon>
+</button>
+<ng-template #elseBlock>
+    <button mat-fab color="accent" class="add-provider-button"
+            [routerLink]="['add']" aria-label="add provider"
+            [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}" (click)="newProvider()">
+        <mat-icon>add</mat-icon>
+    </button>
+</ng-template>

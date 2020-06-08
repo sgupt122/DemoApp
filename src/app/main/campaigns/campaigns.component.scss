@@ -1,0 +1,19 @@
+@import "src/@fuse/scss/fuse";
+
+.add-campaign-button {
+    position: fixed;
+    bottom: 75px;
+    right: 24px;
+    padding: 0;
+    z-index: 99;
+
+    @include media-breakpoint('xs') {
+        position: sticky;
+        top: calc(100vh - 120px);
+        bottom: auto;
+    }
+}
+
+.save-button {
+    width: 84px;
+}

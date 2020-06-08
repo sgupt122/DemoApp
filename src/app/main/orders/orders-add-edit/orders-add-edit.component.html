@@ -1,0 +1,21 @@
+<ng-container *ngIf="flatBtn; else elseTemplate">
+    <button *ngIf="show" mat-flat-button class="mr-4" color="accent" [routerLink]="['edit']" aria-label="edit order"
+    [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+        Edit Order
+    </button>
+    <button matTooltip="Add Order" mat-flat-button class="mr-4" matTooltipPosition="above" color="accent" *ngIf="!show"
+        aria-label="add order" [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}" (click)="newOrder()">
+        Add Order
+    </button>
+</ng-container>
+<ng-template #elseTemplate>
+    <button *ngIf="show" mat-fab color="accent" class="add-orders-button" [routerLink]="['edit']" aria-label="edit order"
+    [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <mat-icon>edit</mat-icon>
+    </button>
+    <button matTooltip="Add Order" matTooltipPosition="above" mat-fab color="accent" class="add-orders-button" *ngIf="!show"
+        aria-label="add order" [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}" (click)="newOrder()">
+        <mat-icon>add</mat-icon>
+    </button> 
+</ng-template>
+

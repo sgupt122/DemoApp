@@ -1,0 +1,26 @@
+<ngx-datatable #table class="material" [rows]="rows" [loadingIndicator]="loading" [columnMode]="'force'" [headerHeight]="48"
+    [footerHeight]="56" [rowHeight]="'auto'" [selected]="selected" [selectionType]="'single'" [selectCheck]="singleSelectCheck"
+    [limit]="10" (select)='onSelect()' clickOutside (clickOutside)="clickOutside()">
+    <ng-container *ngFor="let column of orderColumns">
+        <ngx-datatable-column *ngIf="column.flag" [name]=column.name [prop]=column.prop [flexGrow]="1">
+        </ngx-datatable-column>
+    </ng-container>
+    <!-- <ngx-datatable-column name={{orderColumns[7]}} [flexGrow]="1">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span [matTooltip]="value | json">{{orderTable.orderTB.view}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name={{orderColumns[8]}} [flexGrow]="1">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span [matTooltip]="value | json">{{orderTable.orderTB.view}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name={{orderColumns[9]}} [flexGrow]="1">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span [matTooltip]="value | json">{{orderTable.orderTB.view}}</span>
+        </ng-template>
+    </ngx-datatable-column> -->
+</ngx-datatable>
+<div *ngIf="errorMessage" class="alert alert-danger">
+    {{orderTable.error}}: {{ errorMessage }}
+</div>

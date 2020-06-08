@@ -1,0 +1,99 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth">
+    <div fxLayout="row" fxLayoutAlign="space-around center" class="content p-24 filter-button"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <h1>{{leadTableText.commonLb.prospects}}</h1>
+        </div>
+        <span fxFlex></span>
+        <button mat-flat-button class="mr-4" color="accent" (click)="changeColumnName()">Change column</button>
+        <button mat-flat-button class="mr-4" color="accent" (click)="toggleSidebarOpen('leadsColumn')">
+            Hide/Show column
+        </button>
+        <button mat-flat-button class="mr-4" color="accent" (click)="viewLeadDetails()"
+            [disabled]="show || isLeadSelected">{{leadTableText.commonLb.detail}}</button>
+        <button mat-flat-button class="mr-4" color="accent" (click)="leadCredit()"
+            [disabled]="show || isLeadSelected">{{leadTableText.commonLb.credit}}</button>
+        <button mat-flat-button color="accent" (click)="toggleSidebarOpen('leadsFilter')">
+            <mat-icon>search</mat-icon>
+            {{leadTableText.commonBtn.filter}}
+        </button>
+
+        <fuse-sidebar name="leadDetails" position="right" class="lead-details">
+            <app-lead-details></app-lead-details>
+        </fuse-sidebar>
+        <fuse-sidebar name="leadsColumn" position="right" class="leads-filter">
+            <h1 class="ml-4">Hide/Show column</h1>
+            <div class="p-12">
+                <ng-container *ngFor="let column of (leadsColumns$ | async); let i = index">
+                    <div>
+                        <mat-checkbox [checked]="column.flag" (change)="changeColumnFlag($event.checked,i)">
+                            {{ column.name }}
+                        </mat-checkbox>
+                    </div>
+                </ng-container>
+            </div>
+            <button class="ml-8 mr-8" type="button" mat-flat-button [disabled]="isSaveBtnDisabled" color="accent"
+                (click)="saveColumnHideShow()">
+                save
+            </button>
+        </fuse-sidebar>
+
+        <fuse-sidebar name="leadsFilter" position="right" class="leads-filter">
+            <app-leads-filter [leadFilters]="leadFilters$ | async" (formResetClicked)="formReset()"
+                (filterButtonClicked)="setFilters($event)"></app-leads-filter>
+        </fuse-sidebar>
+
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start" class="content p-24 pt-0"
+        [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        <app-leads-table class="width-100" [selectedLead]="selectedLead$ | async" (updateResults)="setPage($event)"
+            [clientDispositions]="clientDispositions$ | async" [leadsResponse]="leadsResponse$ | async" [leadsColumns]="leadsColumns$ | async"
+            [leadFilters]="leadFilters$ | async" (pageSet)="setPage($event)"
+            (selectedUpdated)="updateSelectedLead($event)" (deselectRow)="deselectRow($event)"></app-leads-table>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center center" fxLayout.gt-xs="column"
+        fxLayoutAlign.gt-xs="center start" class="content p-24">
+        <mat-card>
+            <!-- <div class="h2"><strong>Legend</strong></div> -->
+            <h2 class="mb-0">{{leadTableText.commonLb.legend}}</h2>
+            <!--
+            <div fxLayout="row" fxLayoutAlign="space-around center" class="content p-12">
+                <span class="w-24-p"><mat-icon class="orange-fg">hourglass_empty</mat-icon>Ping Pending&nbsp;&nbsp;</span>
+                <span class="w-27-p"><mat-icon class="red-fg">clear</mat-icon>Ping Disqualified&nbsp;&nbsp;</span>
+                <span class="w-24-p"><mat-icon class="red-fg">watch_later</mat-icon>Ping Timeout&nbsp;&nbsp;</span>
+                <span class="w-25-p"><mat-icon class="green-fg">check</mat-icon>Ping Qualified</span>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-around center" class="content p-12">
+                <span class="w-27-p"><mat-icon class="red-fg">cancel</mat-icon>Post Disqualified&nbsp;&nbsp;</span>
+                <span class="w-23-p"><mat-icon class="green-fg">done_all</mat-icon>Post Qualified&nbsp;&nbsp;</span>
+                <span class="w-27-p"><mat-icon class="red-fg">warning</mat-icon>Post Delivery Error&nbsp;&nbsp;</span>
+                <span class="w-23-p"><mat-icon class="green-fg">email</mat-icon>Post Delivered</span>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="content p-12">
+                <span class="w-26-p"><mat-icon class="orange-fg">thumbs_up_down</mat-icon>Credit Pending&nbsp;&nbsp;</span>
+                <span class="w-21-p"><mat-icon class="red-fg">error_outline</mat-icon>Credit Error&nbsp;&nbsp;</span>
+                <span class="w-26-p"><mat-icon class="red-fg">thumb_down</mat-icon>Credit Rejected&nbsp;&nbsp;</span>
+                <span class="w-27-p"><mat-icon class="green-fg">thumb_up</mat-icon>Credit Accepted</span>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center center" class="content p-12">
+            <span class="w-33-p"><mat-icon class="green-fg">ballot</mat-icon>Quoted</span>
+                <span class="w-33-p"><mat-icon class="green-fg">person</mat-icon>Customer</span>
+            </div>
+            -->
+
+            <div *ngIf="statuses.length>0" class="display-flex-block">
+                <div fxLayout="row" fxLayoutAlign="" class="content p-12" *ngFor="let status of statuses">
+                    <span class="w-23-p display-flex-block">
+                        <mat-icon class="{{status.class}} status-icons" [ngClass]="status.class">{{status.icon}}
+                        </mat-icon>
+                        {{status.name}}
+                    </span>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,174 @@
+<div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+    <form #f="ngForm" fxLayout="column" fxLayoutAlign="start" fxFlex="1 1 auto">
+        <div fxLayout="row" fxFlex="100" class="pb-24 font-size-20 font-weight-bold">
+            {{orderInfo.commonLb.orderReview.title}}
+        </div>
+        <div class="pb-24" fxLayout="column" fxLayoutAlign="space-between none" fxFlex="1 0 auto" class="colum-block">
+            <mat-card fxFlex="100" class="mb-16">
+                <mat-card-header>
+                    <mat-card-title>{{orderInfo.commonBtn.detail}}</mat-card-title>
+                    <span fxFlex></span>
+                    <button mat-icon-button color="accent" (click)="step(0)">
+                        <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                </mat-card-header>
+                <mat-card-content>
+                    <div fxFlex="25">
+                        <mat-list>
+                            <mat-list-item>
+                                <h2 matLine class="font-weight-bold">
+                                    {{orderInfo.commonLb.orderDetailAdd.orderDescription}} </h2>
+                                <p matLine class="pt-8">
+                                    <span class="mat-accent"> {{ orderFormGroup.value.details.description }} </span>
+                                </p>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                    <div fxFlex="25">
+                        <mat-list>
+                            <mat-list-item>
+                                <h2 matLine class="font-weight-bold"> {{orderInfo.commonLb.orderReview.monthlyCap}}
+                                </h2>
+                                <p matLine class="pt-8">
+                                    <span class="mat-accent"> {{ orderFormGroup.value.details.month }} </span>
+                                </p>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                    <div fxFlex="25">
+                        <mat-list>
+                            <mat-list-item>
+                                <h2 matLine class="font-weight-bold"> {{orderInfo.commonLb.orderReview.dailyCap}}
+                                </h2>
+                                <p matLine class="pt-8">
+                                    <span class="mat-accent"> {{ orderFormGroup.value.details.day }} </span>
+                                </p>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                    <div fxFlex="25">
+                        <mat-list>
+                            <mat-list-item>
+                                <h2 matLine class="font-weight-bold"> {{orderInfo.commonLb.orderReview.hourlyCap}}
+                                </h2>
+                                <p matLine class="pt-8">
+                                    <span class="mat-accent"> {{ orderFormGroup.value.details.hour }} </span>
+                                </p>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card fxFlex="100" class="mb-16">
+                <mat-card-header>
+                    <mat-card-title>{{orderInfo.commonInfo.leadTypes}}</mat-card-title>
+                    <span fxFlex></span>
+                    <button mat-icon-button color="accent" (click)="step(1)">
+                        <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <div class="flexbox" *ngIf="orderFormGroup.value.types.lead_types.length>0">
+                            <div class="col-3 block-box" *ngFor="let lead of orderFormGroup.value.types.lead_types;">
+                                <h4 matLine class="font-weight-bold headingmargin">{{orderInfo.commonInfo.leadTypes}}:
+                                    <span class="lead-name">{{lead.lead_type_name}}</span> </h4>
+                                <h3 class="h3headingmargin">Providers:</h3>
+                                <ng-container *ngIf="orderFormGroup.value.types.providers.length>0">
+                                    <div *ngFor="let provider of orderFormGroup.value.types.providers">
+                                        <mat-list-item *ngIf="lead.lead_type_name === provider.campaign_code">
+                                            <p matLine class="pt-5">
+                                                <span class="mat-accent">{{provider.name}}</span>
+                                            </p>
+                                        </mat-list-item>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card fxFlex="100" class="mb-16">
+                <mat-card-header>
+                    <mat-card-title>{{orderInfo.commonLb.orderReview.geo}}</mat-card-title>
+                    <span fxFlex></span>
+                    <button mat-icon-button color="accent" (click)="step(2)">
+                        <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                </mat-card-header>
+                <mat-card-content class="p-16" *ngIf="orderFormGroup.value.geos.data.length>0">
+                    <div *ngFor="let geo of orderFormGroup.value.geos.data" class="geozipcode">{{ geo.zip }}</div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card fxFlex="100" class="mb-16">
+                <mat-card-header>
+                    <mat-card-title>{{orderInfo.commonLb.orderReview.schedule}}</mat-card-title>
+                    <span fxFlex></span>
+                    <button mat-icon-button color="accent" (click)="step(3)">
+                        <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <div class="inlineflex" *ngIf="orderFormGroup.value.schedules.data.length>0">
+                                <div class="blockdiv" *ngFor="let schedule of orderFormGroup.value.schedules.data | GroupBy : 'day'">
+                                    <h2>{{days[schedule.key]}}</h2>
+                                    <ng-container *ngIf="schedule.value.length>0">
+                                        <p *ngFor="let val of schedule.value">
+                                            <span class="mat-accent">{{ val.start_time | date: 'shortTime'}} -
+                                                {{val.end_time | date: 'shortTime'}}</span>
+                                        </p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card fxFlex="100" class="mb-16">
+                <mat-card-header>
+                    <mat-card-title>{{orderInfo.commonLb.orderReview.distributions}}</mat-card-title>
+                    <span fxFlex></span>
+                    <button mat-icon-button color="accent" (click)="step(4)">
+                        <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                </mat-card-header>
+                <mat-card-content>
+                    <div fxFlex="50">
+                        <mat-list>
+                            <mat-list-item>
+                                <h2 matLine class="font-weight-bold">
+                                    {{orderInfo.commonLb.orderReview.emailNotification}}
+                                </h2>
+                                <p matLine class="pt-8">
+                                    <span class="mat-accent">{{orderFormGroup.value.distributions.data[0]?.recipient}}</span>
+                                </p>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                    <div fxFlex="50">
+                        <mat-list>
+                            <mat-list-item>
+                                <h2 matLine class="font-weight-bold">
+                                    {{orderInfo.commonLb.orderReview.smsNotification}} </h2>
+                                <p matLine class="pt-8">
+                                    <span class="mat-accent">{{orderFormGroup.value.distributions.data[1]?.recipient}}</span>
+                                </p>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div fxLayout="row" fxFlex="100">
+            <button mat-stroked-button color="accent" matStepperPrevious>{{orderInfo.commonBtn.back}}</button>
+            <span fxFlex></span>
+            <button mat-raised-button color="accent" (click)="save()">{{orderInfo.commonLb.orderReview.saveOrder}}</button>
+        </div>
+    </form>
+</div>

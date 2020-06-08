@@ -1,0 +1,11 @@
+@import '../../icon-global.scss';
+.adress-text { padding: 10px 0px; display: block; line-height: normal}
+.status-icons {font-size: 18px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+       :host /deep/ .datatable-body-row.active .action-bg,:host /deep/ .datatable-body-row.active .status-icons {
+        color: #d00b1d !important;
+        background-color: #fff !important;
+    }

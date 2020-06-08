@@ -1,0 +1,35 @@
+<div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+    <div fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+        <div fxLayout="row" fxFlex="100" class="pb-24 font-size-20 font-weight-bold">
+            {{orderAddConfig.commonLb.title}}
+        </div>
+        <div class="pb-24" fxLayout="row" fxLayoutAlign="space-between none" fxFlex="1 0 auto" *ngIf="distributionTypes?.data.length>0">
+            <mat-card fxFlex="45" *ngFor="let distributionType of distributionTypes?.data">
+                <mat-card-header>
+                    <mat-card-title>{{ distributionType.name }} {{orderAddConfig.commonLb.notification}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="p-16">
+                    <mat-form-field fxFlex="100">
+                        <mat-label>Select {{ distributionType.name }} {{orderAddConfig.commonLb.recipient}}</mat-label>
+                        <mat-select [(ngModel)]="(distributionType.name === 'Email')?recipientEmail:recipientSMS"
+                            required>
+                            <ng-container *ngIf="distributions[distributionType.id].length>0">
+                                <mat-option *ngFor="let distribution of distributions[distributionType.id]" (click)="onRecipientSelect(distribution)"
+                                    [value]="distribution.recipient">
+                                    {{ distribution.recipient }}
+                                </mat-option>
+                            </ng-container>
+                        </mat-select>
+                        <mat-error *ngIf="recipientEmail === '' || recipientSMS === ''">{{orderAddConfig.commonLb.distributionMsg}}</mat-error>
+                    </mat-form-field>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div fxLayout="row" fxFlex="100">
+            <button mat-raised-button color="accent" matStepperPrevious>{{orderAddConfig.commonBtn.back}}</button>
+            <span fxFlex></span>
+            <a mat-raised-button *ngIf="user.roles[0]==='admin'" tabindex="4" color="accent" (click)="addData()">{{orderAddConfig.commonBtn.addData}}</a>
+            <button mat-raised-button color="accent" matStepperNext [disabled]="distributionFormGroup.invalid">{{orderAddConfig.commonBtn.next}}</button>
+        </div>
+    </div>
+</div>

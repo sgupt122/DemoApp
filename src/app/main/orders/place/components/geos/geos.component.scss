@@ -1,0 +1,61 @@
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #58595b !important;
+}
+
+::ng-deep mat-form-field {
+    .mat-hint, input, ::placeholder, .mat-form-field-label {
+        color: #58595b !important;
+    }
+}
+.pb-5 { padding-bottom: 5px;}
+
+:host {
+
+    .content{
+        max-width: 960px;
+    }
+
+    agm-map {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+:host /deep/ .checkboxblock { display: block;
+.mat-checkbox-layout .mat-checkbox-label{ padding-right: 25px;}
+}
+
+.zip-list{display: inline-block; padding-right:25px; margin-right: 25px; border-right: rgba(0,0,0,.2) solid 1px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+
+
+    .mat-body-1 { margin: 6px 0px;
+    }  
+}
+
+.flexblock {
+display: inline-flex;
+    /* justify-items: flex-end; */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+:host /deep/ .flexblock .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 16px 0;
+}
+.pull-right { width: 70%;}
+.col-4 { float: left; width: 33%; padding-right:45px;}
+.clear{ clear: both;}
+
+.verticalalign{ vertical-align: top;}
+
+@media screen and (max-width: 992px) {
+.pull-right { width: 100%;}
+}
+
+@media screen and (max-width: 767px) {
+.pull-right { width: 100%;}
+.col-4 { float: left; width: 100%; padding-right:15px;}
+}

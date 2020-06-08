@@ -1,0 +1,32 @@
+<div id="lock" fxLayout="column">
+
+    <div id="lock-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="lock-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+            <div class="lock-form-header" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+                fxLayoutAlign.gt-xs="start center">
+
+                <div class="avatar-container">
+                    <mat-icon class="s-32">lock</mat-icon>
+                </div>
+
+                <div>
+                    <div class="title">{{sessionConfigTxt.sessionExpired}}</div>
+                    <div class="subtitle">
+                        {{sessionConfigTxt.refreshMsg}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="submit-button mt-12">
+                <button color="accent" mat-button (click)="destroySession()">{{sessionConfigTxt.noBtn}}</button>
+                <span fxFlex></span>
+                <button color="accent" mat-raised-button (click)="refreshSession()">{{sessionConfigTxt.yesBtn}}</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,43 @@
+<div fxLayout="column" fxFlex fusePerfectScrollbar>
+    <mat-divider cdkFocusRegionEnd></mat-divider>
+    <mat-list>
+        <h3 matSubheader>
+            <span>{{navigationConfigTxt.upcomingEvent}}</span>
+        </h3>
+
+        <ng-container *ngIf="events.length>0">
+            <mat-list-item *ngFor="let event of events" (click)="eventClick(event)">
+                <h3 matLine>{{event.title}}</h3>
+                <p matLine class="secondary-text">{{event.start | date:'shortTime'}}</p>
+                <p matLine class="secondary-text">{{event.location}}</p>
+                <i class="material-icons">
+                    keyboard_arrow_right
+                </i>
+            </mat-list-item>
+        </ng-container>
+        <h4 *ngIf="events.length === 0">{{navigationConfigTxt.noUpcomingEvent}}</h4>
+        <a class="viewall" (click)="viewAllEvents()">{{navigationConfigTxt.viewAllLink}}</a>
+    </mat-list>
+    <mat-divider></mat-divider>
+
+    <mat-list>
+        <h3 matSubheader>
+            <span>{{navigationConfigTxt.newLeads}}</span>
+        </h3>
+        <ng-container *ngIf="leads.length>0">
+            <mat-list-item *ngFor="let lead of leads" (click)="leadClick(lead)">
+                <h3 matLine>{{lead.first_name}} {{lead.last_name}}</h3>
+                <p matLine class="secondary-text">{{lead.email}}</p>
+                <p matLine class="secondary-text">{{lead.phone}}</p>
+                <p matLine class="secondary-text">{{lead.disposition?.name}}</p>
+
+                <i class="material-icons">
+                    keyboard_arrow_right
+                </i>
+            </mat-list-item>
+        </ng-container>
+        <h4 *ngIf="leads.length === 0">{{navigationConfigTxt.noUpcomingLeads}}</h4>
+        <a class="viewall" (click)="viewAllLeads()">{{navigationConfigTxt.viewAllLink}}</a>
+    </mat-list>
+    <mat-divider></mat-divider>
+</div>

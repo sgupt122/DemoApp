@@ -1,0 +1,32 @@
+<div class="page-layout carded fullwidth" id="news">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+             fxLayoutAlign.gt-xs="space-between center"
+             [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column"
+                 fxLayoutAlign.gt-xs="center start">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="secondary-text s-18 cursor-pointer" [routerLink]="['/dashboard']">home</mat-icon>
+                    <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                    <span class="secondary-text">News</span>
+                </div>
+                <div class="h2 mt-16">News</div>
+            </div>
+        </div>
+        <div class="content-card" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+            <div class="toolbar filter-bar p-24 pb-0">
+                <app-news-filter class="width-100" [news]="news$ | async"
+                                 (filterNewsUpdated)="updateFilteredRows($event)"></app-news-filter>
+            </div>
+            <div class="content p-24 pt-0">
+                <app-news-content [news]="news$ | async" [filteredNews]="filteredNews" [isAdmin]="isAdmin"
+                                  [selected]="selected$ | async"
+                                  (newsSelected)="newsItemSelected($event)"></app-news-content>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-news-add-edit *ngIf="isAdmin" [selected]="selected$ | async"
+                   (newNewsItemClicked)="newNewsItem()"></app-news-add-edit>

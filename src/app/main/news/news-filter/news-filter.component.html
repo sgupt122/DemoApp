@@ -1,0 +1,4 @@
+<mat-form-field class="width-100" appearance="outline" fxFlex="100">
+    <mat-label>Type to filter the news</mat-label>
+    <input matInput type='text' (keyup)='updateFilter($event.target.value)'/>
+</mat-form-field>
